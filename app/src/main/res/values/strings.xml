@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Tour of Honor</string>
+    <string name="lblSettingsTitle">Settings</string>
+    <string name="valueBonusCode">AK4</string>
+    <string name="valueCategory">TOH</string>
+    <string name="valueBonusName">Alaska Siberia WWII Memorial</string>
+    <string name="valueGPSCoordinates">GPS: 64.845371, -147.717211</string>
+    <string name="valueBonusAddress">3650 Nobel Street</string>
+    <string name="lblAdditionalDetails">Additional Bonus Details</string>
+    <string name="btnLblSubmitBonus">Submit Bonus</string>
+    <string name="btnLblSendFeedback">Send App Feedback</string>
+    <string name="btnLblSaveRiderInfo">Save Rider Details</string>
+    <string name="btnLblSettings">Settings</string>
+    <string name="btnLblFilter">Filter</string>
+    <string name="appFeedbackEmailSubjectPrefix">TOH Feedback from Rider </string>
+    <string name="lblRiderNumber">Rider Number</string>
+    <string name="lblPillionNumber">Pillion Number</string>
+    <string name="mainImageDescription">Main Image</string>
+    <string name="secondaryImageDescription">Secondary Image</string>
+    <string name="sampleImageDescription">Sample Image</string>
+    <string name="tohLogoDescription">Tour of Honor Logo</string>
+    <string name="defaultRiderNumber">000</string>
 </resources>

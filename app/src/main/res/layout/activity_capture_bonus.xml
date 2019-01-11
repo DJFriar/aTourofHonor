@@ -1,107 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="fill_parent"
     android:orientation="vertical"
     android:fillViewport="true">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".captureBonus">
+
 
     <RelativeLayout
-        android:id="@+id/basicBonusInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true">
+        tools:context=".captureBonus">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            android:layout_alignParentTop="true"/>
+
+        <RelativeLayout
+            android:id="@+id/basicBonusInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/toolbar"
+            android:layout_margin="8dp">
+
+            <TextView
+                android:id="@+id/bonusCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/valueCategory"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/bonusCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/valueBonusCode"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"/>
+
+            <TextView
+                android:id="@+id/bonusName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/valueBonusName"
+                android:layout_below="@id/bonusCategory"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/bonusAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/valueBonusAddress"
+                android:layout_below="@id/bonusName"/>
+
+            <TextView
+                android:id="@+id/bonusCoordinates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/valueGPSCoordinates"
+                android:layout_below="@id/bonusAddress"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/bonusMainImage"
+            android:contentDescription="@string/mainImageDescription"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/basicBonusInfo"
+            android:src="@drawable/no_image_taken"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <ImageView
+            android:id="@+id/bonusSecondaryImage"
+            android:contentDescription="@string/secondaryImageDescription"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bonusMainImage"
+            android:src="@drawable/optional_2nd_image"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_margin="8dp"/>
 
         <TextView
-            android:id="@+id/bonusCategory"
-            android:layout_width="wrap_content"
+            android:id="@+id/additionalBonusDetails"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TOH"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"/>
+            android:text="@string/lblAdditionalDetails"
+            android:layout_below="@id/bonusSecondaryImage"
+            android:layout_marginLeft="8dp"/>
 
-        <TextView
-            android:id="@+id/bonusCode"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/bonusSampleImage"
+            android:contentDescription="@string/sampleImageDescription"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="AK4"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_below="@id/additionalBonusDetails"
+            android:src="@drawable/sample_image_missing"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_margin="8dp"/>
 
-        <TextView
-            android:id="@+id/bonusName"
+        <Button
+            android:id="@+id/btnSubmitBonus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Alaska Siberia WWII Memorial"
-            android:layout_below="@id/bonusCategory"
-            android:textSize="18sp"/>
+            android:text="@string/btnLblSubmitBonus"
+            android:layout_below="@id/bonusSampleImage"
+            android:layout_centerHorizontal="true"/>
 
-        <TextView
-            android:id="@+id/bonusAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3650 Nobel Street"
-            android:layout_below="@id/bonusName"/>
-
-        <TextView
-            android:id="@+id/bonusCoordinates"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="GPS: 64.845371, -147.717211"
-            android:layout_below="@id/bonusAddress"/>
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/bonusMainImage"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/basicBonusInfo"
-        android:src="@drawable/no_image_taken"
-        android:scaleType="centerInside"
-        android:adjustViewBounds="true"
-        android:paddingBottom="8dp"/>
-
-    <ImageView
-        android:id="@+id/bonusSecondaryImage"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/bonusMainImage"
-        android:src="@drawable/optional_2nd_image"
-        android:scaleType="centerInside"
-        android:adjustViewBounds="true"
-        android:paddingBottom="8dp"/>
-
-    <TextView
-        android:id="@+id/additionalBonusDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Additional Bonus Details"
-        android:layout_below="@id/bonusSecondaryImage"/>
-
-    <ImageView
-        android:id="@+id/bonusSampleImage"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/additionalBonusDetails"
-        android:src="@drawable/sample_image_missing"
-        android:scaleType="centerInside"
-        android:adjustViewBounds="true"/>
-
-    <Button
-        android:id="@+id/btnSubmitBonus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit Bonus"
-        android:layout_below="@id/bonusSampleImage"
-        android:layout_centerHorizontal="true"/>
-
-</RelativeLayout>
 </ScrollView>
