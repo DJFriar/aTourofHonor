@@ -1,7 +1,9 @@
 package net.tommyc.android.tourofhonor;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -21,15 +23,23 @@ import android.widget.ImageView;
 import java.io.File;
 import java.io.IOException;
 
+import static net.tommyc.android.tourofhonor.appSettings.pillionNum;
+import static net.tommyc.android.tourofhonor.appSettings.riderNum;
+import static net.tommyc.android.tourofhonor.appSettings.tohPreferences;
+
 public class captureBonus extends AppCompatActivity {
+
+    SharedPreferences sharedpreferences;
+    //int riderNumToH = 479;
+    //int pillionNumToH = 000;
+    String riderNumToH;
+    String pillionNumToH;
+    String submissionEmailAddress = "me@tommyc.net";
 
     /**
      * Opens an already installed Camera application
      */
     static final int REQUEST_TAKE_PHOTO = 1;
-    int riderNumToH = 479;
-    int pillionNumToH = 000;
-    String submissionEmailAddress = "me@tommyc.net";
     Button btnTakeMainPic;
     Button btnSubmitBonus;
     ImageView imageViewMain;
@@ -37,6 +47,7 @@ public class captureBonus extends AppCompatActivity {
     int tappedImageView = 3;
     File mainPhotoUri = null;
     File secondaryPhotoUri = null;
+
     /**
      * Saves the full size image to the public photo directory (similar to the Camera Roll on iOS)
      * * saveImage(imageName: "2018_\(riderNumToH)_\(bonusCodeLabel.text!)_1.jpg")
@@ -56,6 +67,22 @@ public class captureBonus extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         if (Build.VERSION.SDK_INT >= 23) {
             requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
+        }
+
+        // Grab the rider numbers from SharedPreferences
+        sharedpreferences = getSharedPreferences(tohPreferences,
+                Context.MODE_PRIVATE);
+        if (sharedpreferences.contains(riderNum)) {
+            riderNumToH = sharedpreferences.getString(riderNum,"000");
+            Log.e("captureBonus","riderNum set to " + riderNum);
+        } else {
+            Log.e("captureBonus","riderNum Failed");
+        }
+        if (sharedpreferences.contains(pillionNum)) {
+            pillionNumToH = sharedpreferences.getString(pillionNum,"000");
+            Log.e("captureBonus","pillionNum set to " + appSettings.pillionNum);
+        } else {
+            Log.e("captureBonus","pillionNum Failed");
         }
 
         btnSubmitBonus = findViewById(R.id.btnSubmitBonus);

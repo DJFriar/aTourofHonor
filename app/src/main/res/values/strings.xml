@@ -6,6 +6,8 @@
     <string name="valueBonusName">Alaska Siberia WWII Memorial</string>
     <string name="valueGPSCoordinates">GPS: 64.845371, -147.717211</string>
     <string name="valueBonusAddress">3650 Nobel Street</string>
+    <string name="valueBonusCity">Lompoc</string>
+    <string name="valueBonusState">CA</string>
     <string name="lblAdditionalDetails">Additional Bonus Details</string>
     <string name="btnLblSubmitBonus">Submit Bonus</string>
     <string name="btnLblSendFeedback">Send App Feedback</string>
@@ -20,4 +22,7 @@
     <string name="sampleImageDescription">Sample Image</string>
     <string name="tohLogoDescription">Tour of Honor Logo</string>
     <string name="defaultRiderNumber">000</string>
+    <string name="resultsSettingsSaved">Your settings have been saved.</string>
+    <string name="pipe"> | </string>
+    <string name="versionPrefix">Version </string>
 </resources>

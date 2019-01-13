@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:id="@+id/splashScreenAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/splashScreenLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp"
+        android:text="Tour of Honor 2019"
+        android:textSize="36sp"/>
+
+    <ImageView
+        android:id="@+id/splashScreenLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/toh_logo"
+        android:onClick="goToBonusDetail"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/splashScreenLogo"
+        android:layout_above="@id/splashScreenAppCredit"
+        android:background="#FF303030"
+        android:onClick="goToBonusList"/>
+
+    <TextView
+        android:id="@+id/splashScreenAppCredit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Created by: Tommy Craft"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"/>
+
+</RelativeLayout>
