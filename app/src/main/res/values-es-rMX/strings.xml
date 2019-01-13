@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tour de Honor</string>
+    <string name="lblSettingsTitle">Preferencias</string>
+    <string name="lblRiderNumber">Número de jinete</string>
+    <string name="lblPillionNumber">Numero de pasajero</string>
+    <string name="tohLogoDescription">Logo de Tour de Honor</string>
+    <string name="resultsSettingsSaved">Su configuración ha sido guardada.</string>
+    <string name="devModeEnabled">Modo desarrollador Habilitado</string>
+    <string name="versionPrefix">Versión</string>
+    <string name="btnLblFilter">Filtrar</string>
+    <string name="btnLblSettings">Preferencias</string>
+    <string name="btnLblSaveRiderInfo">Guardar detalles del jinete</string>
+    <string name="btnLblSendFeedback">Enviar comentarios</string>
+    <string name="btnLblSubmitBonus">Bono de presentación</string>
+    <string name="lblAdditionalDetails" translatable="false">Detalles adicionales de bonos</string>
+</resources>

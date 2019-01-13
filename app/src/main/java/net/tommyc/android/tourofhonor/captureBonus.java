@@ -22,10 +22,11 @@ import android.widget.ImageView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
-import static net.tommyc.android.tourofhonor.appSettings.pillionNum;
-import static net.tommyc.android.tourofhonor.appSettings.riderNum;
-import static net.tommyc.android.tourofhonor.appSettings.tohPreferences;
+import static net.tommyc.android.tourofhonor.splashScreen.pillionNum;
+import static net.tommyc.android.tourofhonor.splashScreen.riderNum;
+import static net.tommyc.android.tourofhonor.splashScreen.tohPreferences;
 
 public class captureBonus extends AppCompatActivity {
 
@@ -80,7 +81,7 @@ public class captureBonus extends AppCompatActivity {
         }
         if (sharedpreferences.contains(pillionNum)) {
             pillionNumToH = sharedpreferences.getString(pillionNum,"000");
-            Log.e("captureBonus","pillionNum set to " + appSettings.pillionNum);
+            Log.e("captureBonus","pillionNum set to " + pillionNum);
         } else {
             Log.e("captureBonus","pillionNum Failed");
         }
@@ -195,7 +196,7 @@ public class captureBonus extends AppCompatActivity {
     private void dispatchSubmitBonusIntent() {
         Intent sendEmailIntent = new Intent(Intent.ACTION_SEND);
         sendEmailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        sendEmailIntent.setType("plain/text");
+        sendEmailIntent.setType("text/plain");
         sendEmailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{submissionEmailAddress});
         sendEmailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "2019_" + riderNumToH + "_BonusCode");
         sendEmailIntent.putExtra(Intent.EXTRA_TEXT, "Sent from TOH App\nAndroid Version 0.3.076");

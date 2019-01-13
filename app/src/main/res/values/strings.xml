@@ -1,28 +1,30 @@
 <resources>
     <string name="app_name">Tour of Honor</string>
     <string name="lblSettingsTitle">Settings</string>
-    <string name="valueBonusCode">AK4</string>
-    <string name="valueCategory">TOH</string>
-    <string name="valueBonusName">Alaska Siberia WWII Memorial</string>
-    <string name="valueGPSCoordinates">GPS: 64.845371, -147.717211</string>
-    <string name="valueBonusAddress">3650 Nobel Street</string>
-    <string name="valueBonusCity">Lompoc</string>
-    <string name="valueBonusState">CA</string>
+    <string name="valueBonusCode" translatable="false">AK4</string>
+    <string name="valueCategory" translatable="false">TOH</string>
+    <string name="valueBonusName" translatable="false">Alaska Siberia WWII Memorial</string>
+    <string name="valueGPSCoordinates" translatable="false">GPS: 64.845371, -147.717211</string>
+    <string name="valueBonusAddress" translatable="false">3650 Nobel Street</string>
+    <string name="valueBonusCity" translatable="false">Lompoc</string>
+    <string name="valueBonusState" translatable="false">CA</string>
     <string name="lblAdditionalDetails">Additional Bonus Details</string>
     <string name="btnLblSubmitBonus">Submit Bonus</string>
     <string name="btnLblSendFeedback">Send App Feedback</string>
     <string name="btnLblSaveRiderInfo">Save Rider Details</string>
     <string name="btnLblSettings">Settings</string>
     <string name="btnLblFilter">Filter</string>
-    <string name="appFeedbackEmailSubjectPrefix">TOH Feedback from Rider </string>
+    <string name="appFeedbackEmailSubjectPrefix" translatable="false">TOH Feedback from Rider </string>
     <string name="lblRiderNumber">Rider Number</string>
     <string name="lblPillionNumber">Pillion Number</string>
-    <string name="mainImageDescription">Main Image</string>
-    <string name="secondaryImageDescription">Secondary Image</string>
-    <string name="sampleImageDescription">Sample Image</string>
+    <string name="mainImageDescription" translatable="false">Main Image</string>
+    <string name="secondaryImageDescription" translatable="false">Secondary Image</string>
+    <string name="sampleImageDescription" translatable="false">Sample Image</string>
     <string name="tohLogoDescription">Tour of Honor Logo</string>
-    <string name="defaultRiderNumber">000</string>
+    <string name="defaultRiderNumber" translatable="false">000</string>
     <string name="resultsSettingsSaved">Your settings have been saved.</string>
-    <string name="pipe"> | </string>
+    <string name="devModeEnabled">Developer Mode Enabled</string>
+    <string name="devModeDisabled">Developer Mode Disabled</string>
+    <string name="pipe" translatable="false"> | </string>
     <string name="versionPrefix">Version </string>
 </resources>

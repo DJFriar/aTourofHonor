@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tour d\'honneur</string>
+    <string name="lblAdditionalDetails" translatable="false">Détails supplémentaires du bonus</string>
+    <string name="btnLblFilter">Filtre</string>
+    <string name="versionPrefix">Version</string>
+    <string name="devModeEnabled">Mode développeur activé</string>
+    <string name="resultsSettingsSaved">Vos réglages ont été sauvegardés</string>
+    <string name="tohLogoDescription">Logo de Tour d\'honneur</string>
+    <string name="btnLblSettings">Réglages</string>
+    <string name="btnLblSaveRiderInfo">Enregistrer les détails</string>
+    <string name="btnLblSendFeedback">Envoyer des commentaires</string>
+    <string name="btnLblSubmitBonus">Soumettre le bonus</string>
+    <string name="lblSettingsTitle">Réglages</string>
+    <string name="lblRiderNumber">Numéro de coureur</string>
+    <string name="lblPillionNumber">Numéro de passager</string>
+</resources>

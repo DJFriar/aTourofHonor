@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tour of Honor</string>
+    <string name="lblPillionNumber">Fluggastnummer</string>
+    <string name="lblSettingsTitle">Rahmen</string>
+    <string name="btnLblSettings">Rahmen</string>
+    <string name="btnLblFilter">Filter</string>
+    <string name="versionPrefix">Ausführung</string>
+    <string name="btnLblSubmitBonus">Bonus einreichen</string>
+    <string name="lblRiderNumber">Fahrernummer</string>
+    <string name="btnLblSendFeedback">Feedback abschicken</string>
+    <string name="btnLblSaveRiderInfo">Details speichern</string>
+    <string name="lblAdditionalDetails">Zusätzliche Bonusdetails</string>
+    <string name="devModeEnabled">Entwicklermodus aktiviert</string>
+    <string name="resultsSettingsSaved">Deine Einstellungen wurden gespeichert</string>
+    <string name="tohLogoDescription">Ausflug der Ehre Logo</string>
+</resources>

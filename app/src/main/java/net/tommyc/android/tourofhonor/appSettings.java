@@ -3,8 +3,8 @@ package net.tommyc.android.tourofhonor;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,15 +17,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.support.design.widget.Snackbar;
 
+import static net.tommyc.android.tourofhonor.splashScreen.devModeStatus;
+import static net.tommyc.android.tourofhonor.splashScreen.pillionNum;
+import static net.tommyc.android.tourofhonor.splashScreen.riderNum;
+import static net.tommyc.android.tourofhonor.splashScreen.tohPreferences;
+
 public class appSettings extends AppCompatActivity {
 
     public EditText editRiderNumberText;
     public EditText editPillionNumberText;
 
     SharedPreferences sharedpreferences;
-    public static final String tohPreferences = "Tour of Honor Preferences";
-    public static final String riderNum = "RiderNumber";
-    public static final String pillionNum = "PillionNumber";
     String riderNumToH = "000";
     String pillionNumToH = "000";
 
@@ -62,14 +64,16 @@ public class appSettings extends AppCompatActivity {
             }
         });
 
-        Log.e("appSettings", "Initial Values: " + riderNumToH + " / " + pillionNumToH);
         fieldRiderNumber = findViewById(R.id.fieldRiderNumber);
+        /**
         fieldRiderNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 editRiderNumberText.getText().clear();
             }
         });
+        */
+
         fieldPillionNumber = findViewById(R.id.fieldPillionNumber);
         fieldPillionNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,29 +85,35 @@ public class appSettings extends AppCompatActivity {
                 Context.MODE_PRIVATE);
         if (sharedpreferences.contains(riderNum)) {
             Log.e("appSettings","riderNum set to " + riderNum);
-            fieldRiderNumber.setText(sharedpreferences.getString(riderNum, ""));
+            fieldRiderNumber.setText(sharedpreferences.getString(riderNum, "000"));
             riderNumToH = fieldRiderNumber.getText().toString();
         } else {
             Log.e("appSettings","riderNum Failed");
         }
         if (sharedpreferences.contains(pillionNum)) {
             Log.e("appSettings","pillionNum set to " + pillionNum);
-            fieldPillionNumber.setText(sharedpreferences.getString(pillionNum, ""));
+            fieldPillionNumber.setText(sharedpreferences.getString(pillionNum, "000"));
             pillionNumToH = fieldPillionNumber.getText().toString();
         } else {
             Log.e("appSettings","pillionNum Failed");
         }
-
-
-        //editPillionNumberText = (EditText) findViewById(R.id.fieldPillionNumber);
-        //editPillionNumberText.setOnClickListener(this);
-
     }
 
     public void saveRiderInfo(View view) {
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        if (fieldRiderNumber.getText().toString().equals("777")) {
+            if (fieldPillionNumber.getText().toString().equals("777")) {
+                editor.putBoolean(devModeStatus, true);
+                editor.apply();
+                Log.e("appSettings","Developer Mode Enabled");
+                Snackbar.make(findViewById(R.id.appSettingsView), R.string.devModeEnabled,
+                        Snackbar.LENGTH_SHORT)
+                        .show();
+                return;
+            }
+        }
         riderNumToH = fieldRiderNumber.getText().toString();
         pillionNumToH = fieldPillionNumber.getText().toString();
-        SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(riderNum, riderNumToH);
         editor.putString(pillionNum, pillionNumToH);
         editor.apply();
@@ -115,7 +125,6 @@ public class appSettings extends AppCompatActivity {
     }
 
     private String getVersionName() {
-
         appVersionName = BuildConfig.VERSION_NAME;
         versionDisplay = findViewById(R.id.lblAppVersionInfo);
         versionDisplay.setText("Version " + appVersionName + " | " + jsonVersionName);
@@ -158,8 +167,15 @@ public class appSettings extends AppCompatActivity {
                 tapCount++;
             }
             if (tapCount==7) {
-                //do whatever you need
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.haha);
+                mp.start();
                 Log.e("appSettings","Secret Unlocked!");
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putBoolean(devModeStatus, false);
+                editor.apply();
+                Snackbar.make(findViewById(R.id.appSettingsView), R.string.devModeDisabled,
+                        Snackbar.LENGTH_SHORT)
+                        .show();
             }
             return true;
         }

@@ -1,6 +1,8 @@
 package net.tommyc.android.tourofhonor;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,9 +15,14 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import static net.tommyc.android.tourofhonor.splashScreen.devModeOn;
+import static net.tommyc.android.tourofhonor.splashScreen.devModeStatus;
+import static net.tommyc.android.tourofhonor.splashScreen.jsonURL;
+import static net.tommyc.android.tourofhonor.splashScreen.tohPreferences;
+
 public class bonusListing extends AppCompatActivity {
 
-    String jsonURL="https://www.tourofhonor.com/BonusData.json";
+    SharedPreferences sharedpreferences;
     ArrayList<jsonBonuses> dataModels;
     ListView listView;
     private static jsonToListViewAdapter adapter;
@@ -25,8 +32,21 @@ public class bonusListing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bonus_listing);
+        sharedpreferences = getSharedPreferences(tohPreferences,
+                Context.MODE_PRIVATE);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        devModeOn = sharedpreferences.getBoolean(devModeStatus,false);
+
+        if (!devModeOn) {
+            jsonURL = "https://www.tourofhonor.com/BonusData.json";
+        } else if (devModeOn) {
+            jsonURL = "https://www.tommyc.net/BonusData.json";
+        } else {
+            Log.e("bonusListing", "Invalid Dev Mode Setting");
+            return;
+        }
+
         listView = (ListView) findViewById(R.id.lvBonusData);
         new jsonDownloader(bonusListing.this,jsonURL, lv).execute();
 
@@ -69,7 +89,6 @@ public class bonusListing extends AppCompatActivity {
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
