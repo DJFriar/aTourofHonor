@@ -14,7 +14,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+
+import static java.security.AccessController.getContext;
 
 /**
  * -----------------------ROLES-------------------------
@@ -68,9 +71,24 @@ public class jsonDownloader extends AsyncTask<Void,Void,String> {
         {
             //PARSER
             Log.e("jsonDownloader",jsonData);
+            writeToFile(c,jsonData);
             // new JSONParser(c,jsonData, lv).execute();
         }
 
+    }
+
+    //SAVE JSON TO FILE
+    private void writeToFile(Context con, String data) {
+
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(con.openFileOutput("BonusData.json", 0));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+            Log.e("jsonDownloader","BonusData.xml has been written.");
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
     }
 
     //DOWNLOAD

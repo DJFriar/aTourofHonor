@@ -64,10 +64,10 @@ public class jsonToListViewAdapter extends ArrayAdapter<jsonBonuses> implements 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.row_item, parent, false);
-            viewHolder.bonusName = (TextView) convertView.findViewById(R.id.bonusListName);
-            viewHolder.bonusCategory = (TextView) convertView.findViewById(R.id.bonusListCategory);
-            viewHolder.bonusCode = (TextView) convertView.findViewById(R.id.bonusListCode);
-            viewHolder.info = (ImageView) convertView.findViewById(R.id.bonusListImage);
+            viewHolder.bonusName = convertView.findViewById(R.id.bonusListName);
+            viewHolder.bonusCategory = convertView.findViewById(R.id.bonusListCategory);
+            viewHolder.bonusCode = convertView.findViewById(R.id.bonusListCode);
+            viewHolder.info = convertView.findViewById(R.id.bonusListImage);
 
             result=convertView;
 
