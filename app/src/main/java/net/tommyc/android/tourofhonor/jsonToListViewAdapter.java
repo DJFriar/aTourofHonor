@@ -68,10 +68,9 @@ public class jsonToListViewAdapter extends ArrayAdapter<jsonBonuses> implements 
             viewHolder.bonusCategory = convertView.findViewById(R.id.bonusListCategory);
             viewHolder.bonusCode = convertView.findViewById(R.id.bonusListCode);
             viewHolder.info = convertView.findViewById(R.id.bonusListImage);
-
             result=convertView;
-
             convertView.setTag(viewHolder);
+
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
             result=convertView;

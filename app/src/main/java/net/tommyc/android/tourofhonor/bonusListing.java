@@ -25,7 +25,7 @@ public class bonusListing extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     ArrayList<jsonBonuses> dataModels;
     ListView listView;
-    private static jsonToListViewAdapter adapter;
+    private jsonToListViewAdapter adapter;
 
     ListView lv;
 
@@ -34,7 +34,7 @@ public class bonusListing extends AppCompatActivity {
         setContentView(R.layout.activity_bonus_listing);
         sharedpreferences = getSharedPreferences(tohPreferences,
                 Context.MODE_PRIVATE);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         devModeOn = sharedpreferences.getBoolean(devModeStatus,false);
 
@@ -47,22 +47,11 @@ public class bonusListing extends AppCompatActivity {
             return;
         }
 
-        listView = (ListView) findViewById(R.id.lvBonusData);
-        new jsonDownloader(bonusListing.this,jsonURL, lv).execute();
+        // Call DB
+        Log.e("splashScreen","Starting dbHelper");
+        dbHelper dbHelper = new dbHelper(this);
 
-        // Populate the DataModel with some false data for testing purposes
-        dataModels= new ArrayList<>();
-
-        // dataModels.add(new jsonBonuses("BC1", "category1", "name1",1,"address1","city1","state1","GPS1","access1","flavor1","madeInAmerica1","imageName"));
-        // dataModels.add(new jsonBonuses("BC2", "category2", "name2",2,"address2","city2","state2","GPS2","access2","flavor2","madeInAmerica2","imageName"));
-
-        adapter= new jsonToListViewAdapter(dataModels,getApplicationContext());
-        if(adapter != null) {
-            Log.e("onCreate","entered adapter code");
-            listView.setAdapter(adapter);
-        } else {
-            Log.e("onCreate","adapter has no data");
-        }
+        listView = findViewById(R.id.lvBonusData);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

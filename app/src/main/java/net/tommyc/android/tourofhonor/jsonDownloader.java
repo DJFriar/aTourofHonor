@@ -84,7 +84,7 @@ public class jsonDownloader extends AsyncTask<Void,Void,String> {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(con.openFileOutput("BonusData.json", 0));
             outputStreamWriter.write(data);
             outputStreamWriter.close();
-            Log.e("jsonDownloader","BonusData.xml has been written.");
+            Log.e("jsonDownloader","BonusData.json has been written.");
         }
         catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
