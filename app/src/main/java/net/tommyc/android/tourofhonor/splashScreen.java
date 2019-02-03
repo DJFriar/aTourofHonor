@@ -18,6 +18,8 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -40,6 +42,9 @@ public class splashScreen extends AppCompatActivity {
     private DownloadManager downloadManager;
     private long refid;
     private Uri Download_Uri;
+
+    UserDataDBHelper userDB;
+    AppDataDBHelper appDB;
 
     BroadcastReceiver onComplete = new BroadcastReceiver() {
 
@@ -65,6 +70,7 @@ public class splashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.e("splashScreen","Creating Splash Screen");
         setContentView(R.layout.activity_splash_screen);
+        userDB = new UserDataDBHelper(this);
 
         sharedpreferences = getSharedPreferences(tohPreferences,
                 Context.MODE_PRIVATE);
@@ -168,6 +174,17 @@ public class splashScreen extends AppCompatActivity {
         // String dataFile = new File(dirr , "Tour of Honor/" + filename);
         Log.e("splashScreen deleteFile", "File to Delete: ");
         return dataFile.delete();
+    }
+
+    public void AddData(String newEntry) {
+
+        boolean insertData = userDB.addData(newEntry);
+
+        if(insertData==true){
+            Toast.makeText(this, "Data Successfully Inserted!", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this, "Something went wrong :(.", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
