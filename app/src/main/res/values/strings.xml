@@ -8,11 +8,17 @@
     <string name="valueBonusAddress" translatable="false">3650 Nobel Street</string>
     <string name="valueBonusCity" translatable="false">Lompoc</string>
     <string name="valueBonusState" translatable="false">CA</string>
+    <string name="trophyGroup" translatable="false">California</string>
+    <string name="valueTrophiesNeeded" translatable="false">(7 Memorials)</string>
     <string name="lblAdditionalDetails">Additional Bonus Details</string>
     <string name="btnLblSubmitBonus">Submit Bonus</string>
     <string name="btnLblSendFeedback">Send App Feedback</string>
     <string name="btnLblSaveRiderInfo">Save Rider Details</string>
     <string name="btnLblSettings">Settings</string>
+    <string name="lblTrophyModeTitle">Trophy Mode</string>
+    <string name="btnLblTrophyMode">Trophy Mode</string>
+    <string name="lblTrophyModeDesc">Trophy Mode will hold all captured images until all have been collected. Once the final required bonus has been captured, the submit button will be enabled.</string>
+    <string name="btnStartTrophyRun">Start Trophy Run</string>
     <string name="btnLblFilter">Filter</string>
     <string name="appFeedbackEmailSubjectPrefix" translatable="false">TOH Feedback from Rider </string>
     <string name="lblRiderNumber">Rider Number</string>

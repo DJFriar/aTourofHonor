@@ -17,7 +17,7 @@ public class AppDataDBAdapter extends CursorAdapter {
     // you don't bind any data to the view at this point.
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.row_item, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.bonus_list_row_item, parent, false);
     }
 
     // The bindView method is used to bind all data to a given view

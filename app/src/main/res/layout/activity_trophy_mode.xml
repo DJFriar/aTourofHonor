@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/appTrophyMode"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/lblTrophyModeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"
+        android:text="@string/lblTrophyModeTitle"
+        android:layout_below="@+id/toolbar"
+        android:textSize="24sp"
+        android:layout_marginStart="8dp"/>
+
+    <TextView
+        android:id="@+id/lblTrophyModeDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lblTrophyModeDesc"
+        android:layout_below="@+id/lblTrophyModeTitle"
+        android:layout_marginStart="8dp" />
+
+    <ListView
+        android:id="@+id/lvTrophyRuns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblTrophyModeDesc"
+        android:layout_above="@id/btnStartTrophyRun">
+    </ListView>
+
+    <Button
+        android:id="@+id/btnStartTrophyRun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/btnStartTrophyRun"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

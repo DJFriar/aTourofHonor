@@ -27,7 +27,7 @@ public class jsonToListViewAdapter extends ArrayAdapter<jsonBonuses> implements 
     }
 
     public jsonToListViewAdapter(ArrayList<jsonBonuses> data, Context context) {
-        super(context, R.layout.row_item, data);
+        super(context, R.layout.bonus_list_row_item, data);
         this.dataSet = data;
         this.mContext=context;
 
@@ -63,7 +63,7 @@ public class jsonToListViewAdapter extends ArrayAdapter<jsonBonuses> implements 
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.row_item, parent, false);
+            convertView = inflater.inflate(R.layout.bonus_list_row_item, parent, false);
             viewHolder.bonusName = convertView.findViewById(R.id.bonusListName);
             viewHolder.bonusCategory = convertView.findViewById(R.id.bonusListCategory);
             viewHolder.bonusCode = convertView.findViewById(R.id.bonusListCode);

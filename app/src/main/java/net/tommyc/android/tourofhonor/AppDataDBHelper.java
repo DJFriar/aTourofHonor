@@ -42,13 +42,10 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
         Log.e(TAG,"Entered createDatabase");
         boolean mDataBaseExist = checkDataBase();
         if(!mDataBaseExist) {
-            Log.e(TAG,"calling getReadableDatabase");
             this.getReadableDatabase();
-            Log.e(TAG,"if !mDatabaseExist about to close");
             this.close();
             try {
                 //Copy the database from assets
-                Log.e(TAG,"createDatabase passing to copyDatabase");
                 copyDataBase();
                 Log.e(TAG, "createDatabase database created");
             } catch (IOException mIOException) {
@@ -73,7 +70,6 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
 
     //Copy the database from assets
     private void copyDataBase() throws IOException {
-        Log.e(TAG,"entered copyDatabase");
         InputStream mInput;
         OutputStream mOutput;
         String outFileName = mContext.getDatabasePath(DB_NAME).getPath();
@@ -98,7 +94,6 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
     //Open the database, so we can query it
     public boolean openDataBase() throws SQLException
     {
-        Log.e(TAG,"entered openDatabase");
         String mPath = DB_NAME;
         //Log.v("mPath", mPath);
         mDataBase = SQLiteDatabase.openDatabase(mPath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
@@ -106,16 +101,31 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
         return mDataBase != null;
     }
 
+
+
+    public Cursor getAppDataFilteredBonuses() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sState = 'CA'", null);
+        return data;
+    }
+
+    public Cursor getAppDataTrophyRuns() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sTrophyGroup IS NOT NULL GROUP BY sTrophyGroup", null);
+        return data;
+    }
+
+    public Cursor getAppDataAllBonuses() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " ORDER BY sCode", null);
+        return data;
+    }
+
     public Cursor getAppDataListContents() {
-        Log.e(TAG,"Inside the cursor.");
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE, null);
         return data;
     }
-
-
-
-
 
     @Override
     public synchronized void close()

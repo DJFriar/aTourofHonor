@@ -10,4 +10,8 @@
     <item android:id="@+id/action_settings"
         android:title="@string/btnLblSettings"
         app:showAsAction="never" />
+
+    <item android:id="@+id/action_trophyMode"
+        android:title="@string/btnLblTrophyMode"
+        app:showAsAction="never" />
 </menu>

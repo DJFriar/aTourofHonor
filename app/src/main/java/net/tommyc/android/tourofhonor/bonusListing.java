@@ -11,12 +11,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.SimpleCursorAdapter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static net.tommyc.android.tourofhonor.splashScreen.tohPreferences;
 
@@ -47,21 +45,13 @@ public class bonusListing extends AppCompatActivity {
             throw new Error("Unable to CREATE DATABASE");
         }
 
-        // Populate the ListView
-        ArrayList<String> theList = new ArrayList<>();
-        ArrayAdapter listAdapter = new ArrayAdapter<>(this,R.layout.row_item,R.id.bonusListCode,theList);
-        Cursor data = appDBHelper.getAppDataListContents();
-        if (data.getCount() == 0) {
-            Toast.makeText(this, "There are no contents in this list!",Toast.LENGTH_LONG).show();
-        } else {
-            for(int i=0;i<data.getCount();i++) {
-                data.moveToPosition(i);
-                theList.add(data.getString(2));
-            }
-            listView.setAdapter(listAdapter);
-        }
+        // Populate the ListView w/ all rows
+        Cursor data = appDBHelper.getAppDataAllBonuses();
+        listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
 
-
+        // Print to Log the DB headers
         CommonSQLiteUtilities.logDatabaseInfo(appDBHelper.getWritableDatabase());
 
 
@@ -83,11 +73,24 @@ public class bonusListing extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
+                Log.e(TAG,"action_setting");
                 startActivity(new Intent(this, appSettings.class));
                 return true;
 
+            case R.id.action_trophyMode:
+                Log.e(TAG,"action_trophyMode");
+                startActivity(new Intent(this, trophyMode.class));
+                return true;
+
             case R.id.action_filter:
-                // Insert appropriate call here to whatever will make the filters work.
+                Log.e(TAG,"action_filter");
+                // Populate the ListView w/ filtered data
+                ListView listView = findViewById(R.id.lvBonusData);
+                Cursor data = appDBHelper.getAppDataFilteredBonuses();
+                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+
                 return true;
 
             default:
@@ -104,11 +107,19 @@ public class bonusListing extends AppCompatActivity {
     }
 
     public void goToAppSettings (View View) {
+        Log.e(TAG,"goToAppSettings");
         Intent goToAppSettings = new Intent(this,appSettings.class);
         startActivity(goToAppSettings);
     }
 
+    public void goToTrophyMode (View View) {
+        Log.e(TAG,"goToTrophyMode");
+        Intent goToTrophyMode = new Intent(this,trophyMode.class);
+        startActivity(goToTrophyMode);
+    }
+
     public void goToBonusDetail (View View) {
+        Log.e(TAG,"goToBonusDetail");
         Intent goToBonusDetail = new Intent(this,captureBonus.class);
         startActivity(goToBonusDetail);
     }
