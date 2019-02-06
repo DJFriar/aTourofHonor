@@ -25,9 +25,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/splashScreenLogo"
-        android:layout_above="@id/splashScreenAppCredit"
+        android:layout_above="@id/splashScreenSettingsIcon"
         android:background="#FF303030"
         android:onClick="goToBonusList"/>
+
+    <ImageView
+        android:id="@+id/splashScreenSettingsIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_settings_white_24dp"
+        android:onClick="goToAppSettings"/>
 
     <TextView
         android:id="@+id/splashScreenAppCredit"

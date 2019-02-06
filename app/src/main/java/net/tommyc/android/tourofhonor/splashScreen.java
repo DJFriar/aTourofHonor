@@ -130,6 +130,12 @@ public class splashScreen extends AppCompatActivity {
         }
     }
 
+    public void goToAppSettings (View View) {
+        Log.e("splashScreen","Gong to Settings Screen");
+        Intent goToAppSettings = new Intent(this, appSettings.class);
+        startActivity(goToAppSettings);
+    }
+
     public void goToBonusDetail (View View) {
         Log.e("splashScreen","Gong to Bonus Detail");
         Intent goToBonusDetail = new Intent(this, captureBonus.class);

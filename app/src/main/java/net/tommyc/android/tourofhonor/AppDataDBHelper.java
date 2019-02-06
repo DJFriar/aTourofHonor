@@ -37,8 +37,6 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
     }
 
     public void createDataBase() throws IOException {
-        //If the database does not exist, copy it from the assets.
-
         Log.e(TAG,"Entered createDatabase");
         boolean mDataBaseExist = checkDataBase();
         if(!mDataBaseExist) {
@@ -54,7 +52,7 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
         }
     }
 
-    //Check that the database exists here: /data/data/your package/databases/Da Name
+    //See if DB exists in userspace
     private boolean checkDataBase() {
         Log.e(TAG,"entered checkDatabase");
         File dbFile = new File(mContext.getDatabasePath(DB_NAME).getPath());
@@ -68,7 +66,7 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    //Copy the database from assets
+    //Copy the database from assets to userspace
     private void copyDataBase() throws IOException {
         InputStream mInput;
         OutputStream mOutput;
@@ -97,11 +95,8 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
         String mPath = DB_NAME;
         //Log.v("mPath", mPath);
         mDataBase = SQLiteDatabase.openDatabase(mPath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
-        //mDataBase = SQLiteDatabase.openDatabase(mPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
         return mDataBase != null;
     }
-
-
 
     public Cursor getAppDataFilteredBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();

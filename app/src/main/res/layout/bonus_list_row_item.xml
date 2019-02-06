@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -23,35 +23,34 @@
         android:layout_toEndOf="@id/bonusListImage"
         android:text="@string/valueBonusName" />
 
-
     <TextView
         android:id="@+id/bonusListCategory"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bonusListName"
         android:layout_toEndOf="@id/bonusListImage"
         android:text="@string/valueCategory" />
-
-    <TextView
-        android:id="@+id/bonusListCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bonusListCategory"
-        android:layout_toEndOf="@id/bonusListImage"
-        android:text="@string/valueBonusCode" />
-
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:orientation="horizontal"
-        android:layout_below="@id/bonusListName">
+        android:layout_below="@+id/bonusListCategory"
+        android:layout_toEndOf="@id/bonusListImage">
+
+        <TextView
+            android:id="@+id/bonusListCode"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/valueBonusCode" />
 
         <TextView
             android:id="@+id/bonusListCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
             android:text="@string/valueBonusCity"
             android:textStyle="bold" />
 
@@ -59,10 +58,10 @@
             android:id="@+id/bonusListState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
             android:layout_marginStart="4dp"
             android:text="@string/valueBonusState"
             android:textStyle="bold" />
 
     </LinearLayout>
-
 </RelativeLayout>

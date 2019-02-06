@@ -8,11 +8,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -22,7 +22,6 @@ import android.widget.ImageView;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import static net.tommyc.android.tourofhonor.splashScreen.pillionNum;
 import static net.tommyc.android.tourofhonor.splashScreen.riderNum;
@@ -31,8 +30,6 @@ import static net.tommyc.android.tourofhonor.splashScreen.tohPreferences;
 public class captureBonus extends AppCompatActivity {
 
     SharedPreferences sharedpreferences;
-    //int riderNumToH = 479;
-    //int pillionNumToH = 000;
     String riderNumToH;
     String pillionNumToH;
     String submissionEmailAddress = "me@tommyc.net";
