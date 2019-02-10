@@ -1,67 +1,95 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/bonusListImage"
-        android:contentDescription="@string/mainImageDescription"
-        android:layout_width="64dp"
-        android:layout_height="48dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/no_image_taken" />
-
-    <TextView
-        android:id="@+id/bonusListName"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@id/bonusListImage"
-        android:text="@string/valueBonusName" />
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/bonusListCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bonusListName"
-        android:layout_toEndOf="@id/bonusListImage"
-        android:text="@string/valueCategory" />
+        <ImageView
+            android:id="@+id/bonusListImage"
+            android:contentDescription="@string/mainImageDescription"
+            android:layout_width="64dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/no_image_taken" />
+
+        <TextView
+            android:id="@+id/bonusListName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@id/bonusListImage"
+            android:text="@string/valueBonusName" />
+
+        <TextView
+            android:id="@+id/bonusListCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bonusListName"
+            android:layout_toEndOf="@id/bonusListImage"
+            android:text="@string/valueCategory" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:orientation="horizontal"
+            android:layout_below="@+id/bonusListCategory"
+            android:layout_toEndOf="@id/bonusListImage">
+
+            <TextView
+                android:id="@+id/bonusListCode"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/valueBonusCode" />
+
+            <TextView
+                android:id="@+id/bonusListCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                android:text="@string/valueBonusCity"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bonusListState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                android:layout_marginStart="4dp"
+                android:text="@string/valueBonusState"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:orientation="horizontal"
-        android:layout_below="@+id/bonusListCategory"
-        android:layout_toEndOf="@id/bonusListImage">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/bonusListCode"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/valueBonusCode" />
+        <FrameLayout
+            android:id="@+id/leftSideRowTapper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.0"
+            android:onClick="goToBonusDetail"
+            android:layout_weight="1"/>
 
-        <TextView
-            android:id="@+id/bonusListCity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="textEnd"
-            android:text="@string/valueBonusCity"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/bonusListState"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="textEnd"
-            android:layout_marginStart="4dp"
-            android:text="@string/valueBonusState"
-            android:textStyle="bold" />
+        <FrameLayout
+            android:id="@+id/rightSideRowTapper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.0"
+            android:onClick="goToAppSettings"
+            android:layout_weight="1"/>
 
     </LinearLayout>
-</RelativeLayout>
+</FrameLayout>
