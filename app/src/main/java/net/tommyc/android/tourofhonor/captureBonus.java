@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -19,6 +20,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +35,10 @@ public class captureBonus extends AppCompatActivity {
     String riderNumToH;
     String pillionNumToH;
     String submissionEmailAddress = "me@tommyc.net";
+
+    AppDataDBHelper appDBHelper;
+    TextView bonusName;
+    String tappedBonusID;
 
     /**
      * Opens an already installed Camera application
@@ -66,6 +72,21 @@ public class captureBonus extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23) {
             requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
         }
+
+        // Handle the appData DB.
+        appDBHelper = new AppDataDBHelper(this);
+        tappedBonusID = getIntent().getStringExtra("codeTapped");
+
+        // Fetch Bonus Data from DB
+        Cursor data = appDBHelper.getAppDataSelectedBonus(tappedBonusID);
+        /* listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+        */
+
+        // Populate the view data values
+        bonusName = findViewById(R.id.bonusName);
+        bonusName.setText(tappedBonusID);
 
         // Grab the rider numbers from SharedPreferences
         sharedpreferences = getSharedPreferences(tohPreferences,
@@ -113,6 +134,10 @@ public class captureBonus extends AppCompatActivity {
         } else {
             Log.e("App Setup","Tour of Honor folder already existed");
         }
+    }
+
+    public void loadBonusDataFromDB(){
+        Cursor c = appDBHelper.getAppDataSelectedBonus(tappedBonusID);
     }
 
     @Override

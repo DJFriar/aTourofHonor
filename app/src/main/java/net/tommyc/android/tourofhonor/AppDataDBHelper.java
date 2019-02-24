@@ -116,6 +116,13 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public Cursor getAppDataSelectedBonus(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String [] args={id};
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCode = ? ORDER BY sCode", args);
+        return data;
+    }
+
     public Cursor getAppDataListContents() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE, null);

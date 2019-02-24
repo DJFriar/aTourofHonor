@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -25,6 +26,7 @@ public class bonusListing extends AppCompatActivity {
 
     UserDataDBHelper userDBHelper;
     AppDataDBHelper appDBHelper;
+    
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,19 +56,13 @@ public class bonusListing extends AppCompatActivity {
         // Print to Log the DB headers
         CommonSQLiteUtilities.logDatabaseInfo(appDBHelper.getWritableDatabase());
 
-
-        /* TOGGLE DEV MODE USING OLD JSON METHOD
-        devModeOn = sharedpreferences.getBoolean(devModeStatus,false);
-
-        if (!devModeOn) {
-            jsonURL = "https://www.tourofhonor.com/BonusData.json";
-        } else if (devModeOn) {
-            jsonURL = "https://www.tommyc.net/BonusData.json";
-        } else {
-            Log.e("bonusListing", "Invalid Dev Mode Setting");
-            return;
-        }
-        */
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent nextActivity = new Intent(bonusListing.this, bonusListing.class);
+                startActivity(nextActivity);
+            }
+        });
     }
 
     @Override
@@ -90,7 +86,6 @@ public class bonusListing extends AppCompatActivity {
                 listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
                         new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
                         new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
-
                 return true;
 
             default:
@@ -118,9 +113,16 @@ public class bonusListing extends AppCompatActivity {
         startActivity(goToTrophyMode);
     }
 
+    public void goToCaptureBonus (View View) {
+        Log.e(TAG,"goToCaptureBonus, tapped bonus = " + R.id.bonusCode);
+        Intent goToCaptureBonus = new Intent(this,captureBonus.class);
+        goToCaptureBonus.putExtra("codeTapped","TX2");
+        startActivity(goToCaptureBonus);
+    }
+
     public void goToBonusDetail (View View) {
         Log.e(TAG,"goToBonusDetail");
-        Intent goToBonusDetail = new Intent(this,captureBonus.class);
+        Intent goToBonusDetail = new Intent(this,bonusDetail.class);
         startActivity(goToBonusDetail);
     }
 }

@@ -11,6 +11,7 @@
     <string name="trophyGroup" translatable="false">California</string>
     <string name="valueTrophiesNeeded" translatable="false">(7 Memorials)</string>
     <string name="lblAdditionalDetails">Additional Bonus Details</string>
+    <string name="lblSampleBonusImage">Sample Bonus Image</string>
     <string name="btnLblSubmitBonus">Submit Bonus</string>
     <string name="btnLblSendFeedback">Send App Feedback</string>
     <string name="btnLblSaveRiderInfo">Save Rider Details</string>

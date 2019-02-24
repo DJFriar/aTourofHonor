@@ -25,9 +25,6 @@ import java.util.ArrayList;
 
 public class splashScreen extends AppCompatActivity {
 
-    public static String jsonURL="https://www.tourofhonor.com/BonusData.json";
-    public static String jsonDevURL="https://www.tommyc.net/BonusData.json";
-
     SharedPreferences sharedpreferences;
     public static final String tohPreferences = "Tour of Honor Preferences";
     public static final String riderNum = "RiderNumber";
