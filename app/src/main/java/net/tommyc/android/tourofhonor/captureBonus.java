@@ -38,6 +38,8 @@ public class captureBonus extends AppCompatActivity {
 
     AppDataDBHelper appDBHelper;
     TextView bonusName;
+    TextView bonusCategory;
+    TextView bonusCode;
     String tappedBonusID;
 
     /**
@@ -67,7 +69,7 @@ public class captureBonus extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_capture_bonus);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         if (Build.VERSION.SDK_INT >= 23) {
             requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
@@ -79,14 +81,25 @@ public class captureBonus extends AppCompatActivity {
 
         // Fetch Bonus Data from DB
         Cursor data = appDBHelper.getAppDataSelectedBonus(tappedBonusID);
-        /* listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
-        */
+        data.moveToFirst();
+        String sCode = data.getString(data.getColumnIndex("sCode"));
+        String sName = data.getString(data.getColumnIndex("sName"));
+        String sCategory = data.getString(data.getColumnIndex("sCategory"));
 
         // Populate the view data values
+        bonusCode = findViewById(R.id.bonusCode);
+        bonusCode.setText(sCode);
         bonusName = findViewById(R.id.bonusName);
-        bonusName.setText(tappedBonusID);
+        bonusName.setText(sName);
+        bonusCategory = findViewById(R.id.bonusCategory);
+        bonusCategory.setText(sCategory);
+
+                /*
+        setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+
+        */
 
         // Grab the rider numbers from SharedPreferences
         sharedpreferences = getSharedPreferences(tohPreferences,
@@ -136,8 +149,12 @@ public class captureBonus extends AppCompatActivity {
         }
     }
 
-    public void loadBonusDataFromDB(){
-        Cursor c = appDBHelper.getAppDataSelectedBonus(tappedBonusID);
+    public void bindView(View view, Context context, Cursor cursor) {
+        TextView name = view.findViewById(R.id.bonusName);
+        name.setText(cursor.getString(cursor.getColumnIndex("sName")));
+
+        TextView code = view.findViewById(R.id.bonusCode);
+        code.setText(cursor.getString(cursor.getColumnIndex("sCode")));
     }
 
     @Override

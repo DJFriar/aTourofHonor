@@ -11,9 +11,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import java.io.IOException;
 
@@ -56,6 +56,7 @@ public class bonusListing extends AppCompatActivity {
         // Print to Log the DB headers
         CommonSQLiteUtilities.logDatabaseInfo(appDBHelper.getWritableDatabase());
 
+        /*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -63,6 +64,7 @@ public class bonusListing extends AppCompatActivity {
                 startActivity(nextActivity);
             }
         });
+        */
     }
 
     @Override
@@ -114,15 +116,19 @@ public class bonusListing extends AppCompatActivity {
     }
 
     public void goToCaptureBonus (View View) {
-        Log.e(TAG,"goToCaptureBonus, tapped bonus = " + R.id.bonusCode);
+        String tappedBonus = ((TextView) findViewById(R.id.bonusListCode)).getText().toString();
+        Log.e(TAG,"goToCaptureBonus, tapped bonus = " + tappedBonus);
         Intent goToCaptureBonus = new Intent(this,captureBonus.class);
-        goToCaptureBonus.putExtra("codeTapped","TX2");
+        goToCaptureBonus.putExtra("codeTapped",tappedBonus);
         startActivity(goToCaptureBonus);
     }
 
     public void goToBonusDetail (View View) {
-        Log.e(TAG,"goToBonusDetail");
+        String tappedBonus = ((TextView) findViewById(R.id.bonusListCode)).getText().toString();
+
+        Log.e(TAG,"goToBonusDetail, tapped bonus = " + tappedBonus);
         Intent goToBonusDetail = new Intent(this,bonusDetail.class);
+        goToBonusDetail.putExtra("codeTapped",tappedBonus);
         startActivity(goToBonusDetail);
     }
 }
