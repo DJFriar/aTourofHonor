@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -56,15 +58,16 @@ public class bonusListing extends AppCompatActivity {
         // Print to Log the DB headers
         CommonSQLiteUtilities.logDatabaseInfo(appDBHelper.getWritableDatabase());
 
-        /*
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent nextActivity = new Intent(bonusListing.this, bonusListing.class);
-                startActivity(nextActivity);
+                Log.e(TAG,"Entered onItemClickListener");
+                Toast.makeText(bonusListing.this, "You clicked "+position, Toast.LENGTH_SHORT).show();
+                //Intent nextActivity = new Intent(bonusListing.this, bonusListing.class);
+                //startActivity(nextActivity);
             }
         });
-        */
     }
 
     @Override
@@ -102,6 +105,16 @@ public class bonusListing extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
     }
+
+    /*
+    public int getIdFromClassName(String className){
+        String query = "SELECT rowid" +
+                " FROM " + CLASSES_TABLE_NAME +
+                " WHERE " + CLASSES_COLUMN_NAME + " = ?;";
+        SQLiteDatabase db = this.getReadableDatabase();
+        return DatabaseUtils.longForQuery(db, query, new String[]{ className });
+    }
+    */
 
     public void goToAppSettings (View View) {
         Log.e(TAG,"goToAppSettings");
