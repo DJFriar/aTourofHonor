@@ -2,16 +2,40 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/action_filter"
-        android:title="@string/btnLblFilter"
-        android:icon="@drawable/ic_filter_list_white_24dp"
-        app:showAsAction="ifRoom" />
-
     <item android:id="@+id/action_settings"
         android:title="@string/btnLblSettings"
         app:showAsAction="never" />
 
-    <item android:id="@+id/action_trophyMode"
-        android:title="@string/btnLblTrophyMode"
+    <item android:id="@+id/action_filter_none"
+        android:title="@string/btnLblFilterAll"
         app:showAsAction="never" />
+
+    <item android:id="@+id/action_filter_TOH"
+        android:title="@string/btnLblFilterTOH"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_filter_DB"
+        android:title="@string/btnLblFilterDB"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_filter_HUEY"
+        android:title="@string/btnLblFilterHUEY"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_filter_NP"
+        android:title="@string/btnLblFilterNP"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_filter_K9"
+        android:title="@string/btnLblFilterK9"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_filter_GS"
+        android:title="@string/btnLblFilterGS"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_filter_MTr"
+        android:title="@string/btnLblFilterMTr"
+        app:showAsAction="never" />
+
 </menu>

@@ -93,7 +93,7 @@ public class splashScreen extends AppCompatActivity {
         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         registerReceiver(onComplete,
                 new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-        Download_Uri = Uri.parse("http://www.tourofhonor.com/BonusData.json");
+        Download_Uri = Uri.parse("http://www.tourofhonor.com/2019BonusData.json");
         Log.e("splashScreen onCreate","Attempting to get: " + Download_Uri);
 
         if (isStoragePermissionGranted()) {
@@ -183,7 +183,7 @@ public class splashScreen extends AppCompatActivity {
 
         boolean insertData = userDB.addData(newEntry);
 
-        if(insertData==true){
+        if(insertData){
             Toast.makeText(this, "Data Successfully Inserted!", Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(this, "Something went wrong :(.", Toast.LENGTH_LONG).show();

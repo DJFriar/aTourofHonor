@@ -23,7 +23,7 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
     private SQLiteDatabase mDataBase;
     private final Context mContext;
 
-    public AppDataDBHelper(Context context) {
+    AppDataDBHelper(Context context) {
         super(context, DB_NAME, null,DB_VERSION);
         this.mContext = context;
     }
@@ -36,7 +36,7 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public void createDataBase() throws IOException {
+    void createDataBase() throws IOException {
         Log.e(TAG,"Entered createDatabase");
         boolean mDataBaseExist = checkDataBase();
         if(!mDataBaseExist) {
@@ -104,19 +104,61 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public Cursor getAppDataTrophyRuns() {
+    Cursor getAppDataTOHBonuses() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Tour of Honor' ORDER BY sCode", null);
+        return data;
+    }
+
+    Cursor getAppDataDBBonuses() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Doughboys' ORDER BY sCode", null);
+        return data;
+    }
+
+    Cursor getAppDataHueyBonuses() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'AH and UH Helicopters' ORDER BY sCode", null);
+        return data;
+    }
+
+    Cursor getAppDataGSBonuses() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Gold Star Family' ORDER BY sCode", null);
+        return data;
+    }
+
+    Cursor getAppDataNPBonuses() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'National Parks' ORDER BY sCode", null);
+        return data;
+    }
+
+    Cursor getAppDataK9Bonuses() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'War Dogs' ORDER BY sCode", null);
+        return data;
+    }
+
+    Cursor getAppDataMTrBonuses() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Madonna Trail' ORDER BY sCode", null);
+        return data;
+    }
+
+    Cursor getAppDataTrophyRuns() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sTrophyGroup IS NOT NULL GROUP BY sTrophyGroup", null);
         return data;
     }
 
-    public Cursor getAppDataAllBonuses() {
+    Cursor getAppDataAllBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " ORDER BY sCode", null);
         return data;
     }
 
-    public Cursor getAppDataSelectedBonus(String id) {
+    Cursor getAppDataSelectedBonus(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String [] args={id};
         Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCode = ? ORDER BY sCode", args);

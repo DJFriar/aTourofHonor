@@ -72,22 +72,109 @@ public class bonusListing extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        ListView listView;
+        Cursor data;
+
         switch (item.getItemId()) {
             case R.id.action_settings:
                 Log.e(TAG,"action_setting");
                 startActivity(new Intent(this, appSettings.class));
                 return true;
 
+                /*
             case R.id.action_trophyMode:
                 Log.e(TAG,"action_trophyMode");
                 startActivity(new Intent(this, trophyMode.class));
                 return true;
+                */
 
+                /*
             case R.id.action_filter:
                 Log.e(TAG,"action_filter");
                 // Populate the ListView w/ filtered data
                 ListView listView = findViewById(R.id.lvBonusData);
                 Cursor data = appDBHelper.getAppDataFilteredBonuses();
+                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                return true;
+                */
+
+            case R.id.action_filter_TOH:
+                Log.e(TAG,"action_filter_TOH");
+                // Populate the ListView w/ filtered data
+                listView = findViewById(R.id.lvBonusData);
+                data = appDBHelper.getAppDataTOHBonuses();
+                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                return true;
+
+            case R.id.action_filter_HUEY:
+                Log.e(TAG,"action_filter_HUEY");
+                // Populate the ListView w/ filtered data
+                listView = findViewById(R.id.lvBonusData);
+                data = appDBHelper.getAppDataHueyBonuses();
+                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                return true;
+
+            case R.id.action_filter_DB:
+                Log.e(TAG,"action_filter_DB");
+                // Populate the ListView w/ filtered data
+                listView = findViewById(R.id.lvBonusData);
+                data = appDBHelper.getAppDataDBBonuses();
+                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                return true;
+
+            case R.id.action_filter_GS:
+                Log.e(TAG,"action_filter_GS");
+                // Populate the ListView w/ filtered data
+                listView = findViewById(R.id.lvBonusData);
+                data = appDBHelper.getAppDataGSBonuses();
+                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                return true;
+
+            case R.id.action_filter_NP:
+                Log.e(TAG,"action_filter_NP");
+                // Populate the ListView w/ filtered data
+                listView = findViewById(R.id.lvBonusData);
+                data = appDBHelper.getAppDataNPBonuses();
+                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                return true;
+
+            case R.id.action_filter_K9:
+                Log.e(TAG,"action_filter_K9");
+                // Populate the ListView w/ filtered data
+                listView = findViewById(R.id.lvBonusData);
+                data = appDBHelper.getAppDataK9Bonuses();
+                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                return true;
+
+            case R.id.action_filter_none:
+                Log.e(TAG,"action_filter_none");
+                // Populate the ListView w/ filtered data
+                listView = findViewById(R.id.lvBonusData);
+                data = appDBHelper.getAppDataAllBonuses();
+                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                return true;
+
+            case R.id.action_filter_MTr:
+                Log.e(TAG,"action_filter_MTr");
+                // Populate the ListView w/ filtered data
+                listView = findViewById(R.id.lvBonusData);
+                data = appDBHelper.getAppDataMTrBonuses();
                 listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
                         new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
                         new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));

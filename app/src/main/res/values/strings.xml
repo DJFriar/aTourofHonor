@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Tour of Honor</string>
+    <string name="app_name_year" translatable="false">Tour of Honor 2019</string>
     <string name="lblSettingsTitle">Settings</string>
     <string name="valueBonusCode" translatable="false">AK4</string>
     <string name="valueCategory" translatable="false">TOH</string>
@@ -11,16 +12,24 @@
     <string name="trophyGroup" translatable="false">California</string>
     <string name="valueTrophiesNeeded" translatable="false">(7 Memorials)</string>
     <string name="lblAdditionalDetails">Additional Bonus Details</string>
-    <string name="lblSampleBonusImage">Sample Bonus Image</string>
+    <string name="lblSampleBonusImage" translatable="false">Sample Bonus Image</string>
     <string name="btnLblSubmitBonus">Submit Bonus</string>
     <string name="btnLblSendFeedback">Send App Feedback</string>
     <string name="btnLblSaveRiderInfo">Save Rider Details</string>
     <string name="btnLblSettings">Settings</string>
-    <string name="lblTrophyModeTitle">Trophy Mode</string>
-    <string name="btnLblTrophyMode">Trophy Mode</string>
-    <string name="lblTrophyModeDesc">Trophy Mode will hold all captured images until all have been collected. Once the final required bonus has been captured, the submit button will be enabled.</string>
-    <string name="btnStartTrophyRun">Start Trophy Run</string>
+    <string name="lblTrophyModeTitle" translatable="false">Trophy Mode</string>
+    <string name="btnLblTrophyMode" translatable="false">Trophy Mode</string>
+    <string name="lblTrophyModeDesc" translatable="false">Trophy Mode will hold all captured images until all have been collected. Once the final required bonus has been captured, the submit button will be enabled.</string>
+    <string name="btnStartTrophyRun" translatable="false">Start Trophy Run</string>
     <string name="btnLblFilter">Filter</string>
+    <string name="btnLblFilterTOH" translatable="false">Tour of Honor</string>
+    <string name="btnLblFilterHUEY" translatable="false">Huey</string>
+    <string name="btnLblFilterDB" translatable="false">Doughboys</string>
+    <string name="btnLblFilterAll" translatable="false">All</string>
+    <string name="btnLblFilterNP" translatable="false">National Parks</string>
+    <string name="btnLblFilterK9" translatable="false">War Dogs</string>
+    <string name="btnLblFilterGS" translatable="false">Gold Star</string>
+    <string name="btnLblFilterMTr" translatable="false">Madonna Trail</string>
     <string name="appFeedbackEmailSubjectPrefix" translatable="false">TOH Feedback from Rider </string>
     <string name="lblRiderNumber">Rider Number</string>
     <string name="lblPillionNumber">Pillion Number</string>
@@ -31,7 +40,10 @@
     <string name="defaultRiderNumber" translatable="false">000</string>
     <string name="resultsSettingsSaved">Your settings have been saved.</string>
     <string name="devModeEnabled">Developer Mode Enabled</string>
-    <string name="devModeDisabled">Developer Mode Disabled</string>
+    <string name="devModeDisabled" translatable="false">Developer Mode Disabled</string>
     <string name="pipe" translatable="false"> | </string>
+    <string name="imageDescriptionTOHLogo" translatable="false">Tour of Honor Logo </string>
+    <string name="imageDescriptionSettingsIcon" translatable="false">Settings Icon </string>
     <string name="versionPrefix">Version </string>
+    <string name="createdBy" translatable="false">Created by Tommy Craft </string>
 </resources>

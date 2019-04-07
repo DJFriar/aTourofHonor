@@ -37,7 +37,7 @@ public class bonusDetail extends AppCompatActivity {
         String sAddress = data.getString(data.getColumnIndex("sAddress"));
         String sGPS = data.getString(data.getColumnIndex("sGPS"));
 
-        // Populate the view data valuesl
+        // Populate the view data values
         bonusCode = findViewById(R.id.bonusCode);
         bonusCode.setText(sCode);
         bonusName = findViewById(R.id.bonusName);
@@ -48,6 +48,13 @@ public class bonusDetail extends AppCompatActivity {
         bonusAddress.setText(sAddress);
         bonusGPS = findViewById(R.id.bonusCoordinates);
         bonusGPS.setText(sGPS);
+
+        /*
+        // Get Associated Sample Image
+        ImageView imageView = findViewById(R.id.bonusSampleImage);
+        imageView = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+        imageView.setImageBitmap(bitmap);
+        */
     }
 
     @Override
