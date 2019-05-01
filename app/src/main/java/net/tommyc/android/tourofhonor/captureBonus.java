@@ -22,6 +22,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -31,10 +33,12 @@ import static net.tommyc.android.tourofhonor.splashScreen.tohPreferences;
 
 public class captureBonus extends AppCompatActivity {
 
+    private static String TAG = "captureBonus"; // Tag just for the LogCat window
+
     SharedPreferences sharedpreferences;
     String riderNumToH;
     String pillionNumToH;
-    String submissionEmailAddress = "me@tommyc.net";
+    String submissionEmailAddress = "photos@tourofhonor.com";
 
     AppDataDBHelper appDBHelper;
     TextView bonusName;
@@ -45,6 +49,7 @@ public class captureBonus extends AppCompatActivity {
     TextView bonusCity;
     TextView bonusState;
     TextView bonusFlavorContent;
+    ImageView bonusSampleImage;
     String tappedBonusID;
 
     /**
@@ -114,12 +119,17 @@ public class captureBonus extends AppCompatActivity {
         bonusFlavorContent = findViewById(R.id.bonusFlavorContent);
         bonusFlavorContent.setText(sFlavor);
 
+        // Adjust submission email if category is National Parks
+        if (bonusCategory.getText().toString().equals("National Parks")) {
+            submissionEmailAddress = "nps_photos@tourofhonor.com";
+        }
+
         // Grab the rider numbers from SharedPreferences
         sharedpreferences = getSharedPreferences(tohPreferences,
                 Context.MODE_PRIVATE);
         if (sharedpreferences.contains(riderNum)) {
             riderNumToH = sharedpreferences.getString(riderNum,"000");
-            Log.e("captureBonus","riderNum set to " + riderNum);
+            Log.e(TAG,"riderNum set to " + riderNum);
         } else {
             Log.e("captureBonus","riderNum Failed");
         }
@@ -129,6 +139,10 @@ public class captureBonus extends AppCompatActivity {
         } else {
             Log.e("captureBonus","pillionNum Failed");
         }
+
+        // Process the Sample Image
+        bonusSampleImage = findViewById(R.id.bonusSampleImage);
+        Glide.with(this).load("https://www.tourofhonor.com/appimages/2019fl4.jpg").into(bonusSampleImage);
 
         btnSubmitBonus = findViewById(R.id.btnSubmitBonus);
         btnSubmitBonus.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +164,7 @@ public class captureBonus extends AppCompatActivity {
             public void onClick(View v) {
                 tappedImageView = 1;
                 dispatchTakeMainPictureIntent();
-                Log.v("User Action", "Main Image Tapped");
+                Log.v("User Action", "Optional Image Tapped");
             }
         });
         File f = new File(imagePath);
@@ -250,7 +264,7 @@ public class captureBonus extends AppCompatActivity {
         sendEmailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         sendEmailIntent.setType("text/plain");
         sendEmailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{submissionEmailAddress});
-        sendEmailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "2019_" + riderNumToH + "_BonusCode");
+        sendEmailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "2019_" + riderNumToH + "_" + bonusCategory.getText() +"_" + bonusState.getText() + "_" + bonusCity.getText() + "_" + bonusCode.getText());
         sendEmailIntent.putExtra(Intent.EXTRA_TEXT, "Sent from TOH App\nAndroid Version 0.3.076");
         if (mainPhotoPath != null) {
             sendEmailIntent.putExtra(android.content.Intent.EXTRA_STREAM, FileProvider.getUriForFile(captureBonus.this, "net.tommyc.android.tourofhonor", mainPhotoUri));
