@@ -29,10 +29,12 @@ public class splashScreen extends AppCompatActivity {
     public static final String tohPreferences = "Tour of Honor Preferences";
     public static final String riderNum = "RiderNumber";
     public static final String pillionNum = "PillionNumber";
+    public static final String targetState = "TargetState";
     public static final String devModeStatus = "DevModeStatus";
 
     public static String riderNumToH;
     public static String pillionNumToH;
+    public static String targetStateToH;
     public static boolean devModeOn = false;
 
     ArrayList<Long> list = new ArrayList<>();
@@ -82,6 +84,12 @@ public class splashScreen extends AppCompatActivity {
             pillionNumToH = sharedpreferences.getString(pillionNum,"000");
         } else {
             Log.e("splashScreen","pillionNum Failed");
+        }
+        if (sharedpreferences.contains(targetState)) {
+            Log.e("splashScreen","pillionNum set to " + targetState);
+            targetStateToH = sharedpreferences.getString(targetState,"000");
+        } else {
+            Log.e("splashScreen","targetState Failed");
         }
         if (sharedpreferences.contains(devModeStatus)) {
             Log.e("splashScreen","Dev Mode set to " + devModeStatus + devModeOn);

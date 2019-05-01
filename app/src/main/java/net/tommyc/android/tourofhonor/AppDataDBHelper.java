@@ -16,7 +16,7 @@ import java.io.OutputStream;
 public class AppDataDBHelper extends SQLiteOpenHelper {
 
     private static String TAG = "AppDataDBHelper"; // Tag just for the LogCat window
-    private static String DB_NAME ="appdata1.db";
+    private static String DB_NAME ="appdata2.db";
     private static String DB_TABLE = "Bonus_Data";
     private static int DB_VERSION = 1;
 
@@ -125,7 +125,7 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
 
     Cursor getAppDataHueyBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'AH and UH Helicopters' ORDER BY sCode", null);
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Hueys' ORDER BY sCode", null);
         return data;
     }
 
@@ -161,14 +161,20 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
 
     Cursor getAppDataAllBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " ORDER BY sCode", null);
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " ORDER BY sState,sCode", null);
+        return data;
+    }
+
+    Cursor getAppDataByState() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sState = ? ORDER BY sCode", null);
         return data;
     }
 
     Cursor getAppDataSelectedBonus(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String [] args={id};
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCode = ? ORDER BY sCode", args);
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCode = ?", args);
         return data;
     }
 

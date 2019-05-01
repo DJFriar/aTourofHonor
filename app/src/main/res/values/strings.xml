@@ -30,6 +30,7 @@
     <string name="btnLblFilterK9" translatable="false">War Dogs</string>
     <string name="btnLblFilterGS" translatable="false">Gold Star</string>
     <string name="btnLblFilterMTr" translatable="false">Madonna Trail</string>
+    <string name="btnLblFilterState" translatable="false">Target State</string>
     <string name="appFeedbackEmailSubjectPrefix" translatable="false">TOH Feedback from Rider </string>
     <string name="lblRiderNumber">Rider Number</string>
     <string name="lblPillionNumber">Pillion Number</string>

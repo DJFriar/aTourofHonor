@@ -20,6 +20,7 @@ import android.support.design.widget.Snackbar;
 import static net.tommyc.android.tourofhonor.splashScreen.devModeStatus;
 import static net.tommyc.android.tourofhonor.splashScreen.pillionNum;
 import static net.tommyc.android.tourofhonor.splashScreen.riderNum;
+import static net.tommyc.android.tourofhonor.splashScreen.targetState;
 import static net.tommyc.android.tourofhonor.splashScreen.tohPreferences;
 
 public class appSettings extends AppCompatActivity {
@@ -30,6 +31,7 @@ public class appSettings extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     String riderNumToH = "000";
     String pillionNumToH = "000";
+    String targetStateToH = "XX";
 
     String myEmailAddress = "me@tommyc.net";
     String appVersionName;
@@ -38,6 +40,7 @@ public class appSettings extends AppCompatActivity {
     Button btnSendAppFeedback;
     EditText fieldRiderNumber;
     EditText fieldPillionNumber;
+    EditText fieldTargetState;
 
     private int tapCount = 0;
     private long startTimerMillis=0;
@@ -63,6 +66,8 @@ public class appSettings extends AppCompatActivity {
                 dispatchAppFeedbackIntent();
             }
         });
+
+        //fieldTargetState = findViewById(R.id.fieldTargetState);
 
         fieldRiderNumber = findViewById(R.id.fieldRiderNumber);
         /**
@@ -97,6 +102,15 @@ public class appSettings extends AppCompatActivity {
         } else {
             Log.e("appSettings","pillionNum Failed");
         }
+        /*
+        if (sharedpreferences.contains(targetState)) {
+            Log.e("appSettings","targetState set to " + targetState);
+            fieldTargetState.setText(sharedpreferences.getString(targetState, "XX"));
+            targetStateToH = fieldTargetState.getText().toString();
+        } else {
+            Log.e("appSettings","targetState Failed");
+        }
+        */
     }
 
     public void saveRiderInfo(View view) {
@@ -114,8 +128,10 @@ public class appSettings extends AppCompatActivity {
         }
         riderNumToH = fieldRiderNumber.getText().toString();
         pillionNumToH = fieldPillionNumber.getText().toString();
+        targetStateToH = fieldTargetState.getText().toString();
         editor.putString(riderNum, riderNumToH);
         editor.putString(pillionNum, pillionNumToH);
+        editor.putString(targetState, targetStateToH);
         editor.apply();
         Log.e("appSettings","Screen Values " + riderNumToH + " / " + pillionNumToH);
         Log.e("appSettings","Retrieved Values: " + riderNum + " / " + pillionNum);

@@ -15,16 +15,18 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 
+import static net.tommyc.android.tourofhonor.splashScreen.targetState;
 import static net.tommyc.android.tourofhonor.splashScreen.tohPreferences;
+
 
 public class bonusListing extends AppCompatActivity {
 
     private static String TAG = "bonusListing"; // Tag just for the LogCat window
     SharedPreferences sharedpreferences;
+    String targetStateToH = "XX";
 
     UserDataDBHelper userDBHelper;
     AppDataDBHelper appDBHelper;
@@ -49,22 +51,34 @@ public class bonusListing extends AppCompatActivity {
             throw new Error("Unable to CREATE DATABASE");
         }
 
+        // Grab the target state from SharedPreferences
+        sharedpreferences = getSharedPreferences(tohPreferences,
+                Context.MODE_PRIVATE);
+        if (sharedpreferences.contains(targetState)) {
+            targetStateToH = sharedpreferences.getString(targetState,"XX");
+            Log.e(TAG,"targetState set to " + targetState);
+        } else {
+            Log.e(TAG,"targetState Failed");
+        }
+
+        // Print to Log the DB headers
+        CommonSQLiteUtilities.logDatabaseInfo(appDBHelper.getWritableDatabase());
+
         // Populate the ListView w/ all rows
         Cursor data = appDBHelper.getAppDataAllBonuses();
         listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
                 new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
                 new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
 
-        // Print to Log the DB headers
-        CommonSQLiteUtilities.logDatabaseInfo(appDBHelper.getWritableDatabase());
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.e(TAG,"Entered onItemClickListener");
-                Toast.makeText(bonusListing.this, "You clicked "+position, Toast.LENGTH_SHORT).show();
-                //Intent nextActivity = new Intent(bonusListing.this, bonusListing.class);
-                //startActivity(nextActivity);
+                //use the position variable to get the list item from the list
+                String tappedBonus = ((TextView) view.findViewById(R.id.bonusListCode)).getText().toString();
+                Log.e(TAG,"goToCaptureBonus, tapped bonus = " + tappedBonus);
+                Intent goToCaptureBonus = new Intent(bonusListing.this,captureBonus.class);
+                goToCaptureBonus.putExtra("codeTapped",tappedBonus);
+                startActivity(goToCaptureBonus);
             }
         });
     }
@@ -179,6 +193,18 @@ public class bonusListing extends AppCompatActivity {
                         new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
                 return true;
 
+                /*
+            case R.id.action_filter_State:
+                Log.e(TAG,"action_filter_State");
+                // Populate the ListView w/ filtered data
+                listView = findViewById(R.id.lvBonusData);
+                data = appDBHelper.getAppDataByState();
+                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                return true;
+            */
+
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -191,16 +217,6 @@ public class bonusListing extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
     }
-
-    /*
-    public int getIdFromClassName(String className){
-        String query = "SELECT rowid" +
-                " FROM " + CLASSES_TABLE_NAME +
-                " WHERE " + CLASSES_COLUMN_NAME + " = ?;";
-        SQLiteDatabase db = this.getReadableDatabase();
-        return DatabaseUtils.longForQuery(db, query, new String[]{ className });
-    }
-    */
 
     public void goToAppSettings (View View) {
         Log.e(TAG,"goToAppSettings");
@@ -215,7 +231,7 @@ public class bonusListing extends AppCompatActivity {
     }
 
     public void goToCaptureBonus (View View) {
-        String tappedBonus = ((TextView) this.findViewById(R.id.bonusListCode)).getText().toString();
+        String tappedBonus = ((TextView) findViewById(R.id.bonusListCode)).getText().toString();
         Log.e(TAG,"goToCaptureBonus, tapped bonus = " + tappedBonus);
         Intent goToCaptureBonus = new Intent(this,captureBonus.class);
         goToCaptureBonus.putExtra("codeTapped",tappedBonus);

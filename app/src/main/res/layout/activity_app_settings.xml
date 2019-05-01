@@ -62,7 +62,6 @@
             android:id="@+id/lblPillionNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
             android:textSize="18sp"
@@ -86,6 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
         android:layout_below="@id/rowPillionInfo"
         android:onClick="saveRiderInfo"
         android:text="@string/btnLblSaveRiderInfo"/>

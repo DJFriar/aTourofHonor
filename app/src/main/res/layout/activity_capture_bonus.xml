@@ -50,12 +50,64 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/bonusLocationInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_below="@id/basicBonusInfo">
+
+            <TextView
+                android:id="@+id/bonusAddress"
+                android:text="1600 Pennsylvania Ave NW"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/bonusCity"
+                android:text="Washington"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bonusAddress"/>
+
+            <TextView
+                android:id="@+id/bonusState"
+                android:text="DC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_below="@id/bonusAddress"
+                android:layout_toEndOf="@id/bonusCity"/>
+
+            <TextView
+                android:id="@+id/bonusGPSLabel"
+                android:text="GPS:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_below="@id/bonusCity"/>
+
+            <TextView
+                android:id="@+id/bonusGPSCoordinates"
+                android:text="XX.YYYYYY, -XX.YYYYYY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_below="@id/bonusCity"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
         <ImageView
             android:id="@+id/bonusMainImage"
             android:contentDescription="@string/mainImageDescription"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/basicBonusInfo"
+            android:layout_below="@id/bonusLocationInfo"
             android:src="@drawable/no_image_taken"
             android:scaleType="centerInside"
             android:adjustViewBounds="true"
@@ -93,12 +145,28 @@
             android:adjustViewBounds="true"
             android:layout_margin="8dp"/>
 
+        <TextView
+            android:id="@+id/bonusFlavorLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bonus Notes"
+            android:layout_marginStart="8dp"
+            android:layout_below="@id/bonusSampleImage"/>
+
+        <TextView
+            android:id="@+id/bonusFlavorContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="XXXXXXXXXXXXXXX"
+            android:layout_margin="8dp"
+            android:layout_below="@id/bonusFlavorLabel"/>
+
         <Button
             android:id="@+id/btnSubmitBonus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btnLblSubmitBonus"
-            android:layout_below="@id/bonusSampleImage"
+            android:layout_below="@id/bonusFlavorContent"
             android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>

@@ -40,6 +40,11 @@ public class captureBonus extends AppCompatActivity {
     TextView bonusName;
     TextView bonusCategory;
     TextView bonusCode;
+    TextView bonusGPSCoordinates;
+    TextView bonusAddress;
+    TextView bonusCity;
+    TextView bonusState;
+    TextView bonusFlavorContent;
     String tappedBonusID;
 
     /**
@@ -85,6 +90,11 @@ public class captureBonus extends AppCompatActivity {
         String sCode = data.getString(data.getColumnIndex("sCode"));
         String sName = data.getString(data.getColumnIndex("sName"));
         String sCategory = data.getString(data.getColumnIndex("sCategory"));
+        String sGPS = data.getString(data.getColumnIndex("sGPS"));
+        String sAddress = data.getString(data.getColumnIndex("sAddress"));
+        String sCity = data.getString(data.getColumnIndex("sCity"));
+        String sState = data.getString(data.getColumnIndex("sState"));
+        String sFlavor = data.getString(data.getColumnIndex("sFlavor"));
 
         // Populate the view data values
         bonusCode = findViewById(R.id.bonusCode);
@@ -93,13 +103,16 @@ public class captureBonus extends AppCompatActivity {
         bonusName.setText(sName);
         bonusCategory = findViewById(R.id.bonusCategory);
         bonusCategory.setText(sCategory);
-
-                /*
-        setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
-
-        */
+        bonusGPSCoordinates = findViewById(R.id.bonusGPSCoordinates);
+        bonusGPSCoordinates.setText(sGPS);
+        bonusAddress = findViewById(R.id.bonusAddress);
+        bonusAddress.setText(sAddress);
+        bonusCity = findViewById(R.id.bonusCity);
+        bonusCity.setText(sCity);
+        bonusState = findViewById(R.id.bonusState);
+        bonusState.setText(sState);
+        bonusFlavorContent = findViewById(R.id.bonusFlavorContent);
+        bonusFlavorContent.setText(sFlavor);
 
         // Grab the rider numbers from SharedPreferences
         sharedpreferences = getSharedPreferences(tohPreferences,
