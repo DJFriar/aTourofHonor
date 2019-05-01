@@ -16,7 +16,7 @@ import java.io.OutputStream;
 public class AppDataDBHelper extends SQLiteOpenHelper {
 
     private static String TAG = "AppDataDBHelper"; // Tag just for the LogCat window
-    private static String DB_NAME ="appdata.db";
+    private static String DB_NAME ="appdata1.db";
     private static String DB_TABLE = "Bonus_Data";
     private static int DB_VERSION = 1;
 
@@ -56,6 +56,7 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
     private boolean checkDataBase() {
         Log.e(TAG,"entered checkDatabase");
         File dbFile = new File(mContext.getDatabasePath(DB_NAME).getPath());
+        // this.deleteDatabase();
         if (dbFile.exists()) return true;
         Log.e(TAG,"dbFile = true");
         File dbDir = dbFile.getParentFile();
@@ -64,6 +65,12 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
             dbDir.mkdirs();
         }
         return false;
+    }
+
+    //Delete the DB from userspace
+    private void deleteDatabase() {
+        Log.e(TAG, "entered deleteDatabase");
+        // Insert the actual delete DB logic here
     }
 
     //Copy the database from assets to userspace

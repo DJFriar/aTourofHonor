@@ -37,7 +37,7 @@ public class bonusListing extends AppCompatActivity {
                 Context.MODE_PRIVATE);
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        ListView listView = findViewById(R.id.lvBonusData);
+        final ListView listView = findViewById(R.id.lvBonusData);
 
         // Handle the appData DB.
         appDBHelper = new AppDataDBHelper(this);
@@ -57,7 +57,6 @@ public class bonusListing extends AppCompatActivity {
 
         // Print to Log the DB headers
         CommonSQLiteUtilities.logDatabaseInfo(appDBHelper.getWritableDatabase());
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -216,7 +215,7 @@ public class bonusListing extends AppCompatActivity {
     }
 
     public void goToCaptureBonus (View View) {
-        String tappedBonus = ((TextView) findViewById(R.id.bonusListCode)).getText().toString();
+        String tappedBonus = ((TextView) this.findViewById(R.id.bonusListCode)).getText().toString();
         Log.e(TAG,"goToCaptureBonus, tapped bonus = " + tappedBonus);
         Intent goToCaptureBonus = new Intent(this,captureBonus.class);
         goToCaptureBonus.putExtra("codeTapped",tappedBonus);
@@ -225,7 +224,6 @@ public class bonusListing extends AppCompatActivity {
 
     public void goToBonusDetail (View View) {
         String tappedBonus = ((TextView) findViewById(R.id.bonusListCode)).getText().toString();
-
         Log.e(TAG,"goToBonusDetail, tapped bonus = " + tappedBonus);
         Intent goToBonusDetail = new Intent(this,bonusDetail.class);
         goToBonusDetail.putExtra("codeTapped",tappedBonus);
