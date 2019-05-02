@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/bonusLocationInfo"
             android:src="@drawable/no_image_taken"
-            android:scaleType="centerInside"
+            android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             android:layout_margin="8dp"
             android:clickable="true"
@@ -118,11 +118,11 @@
         <ImageView
             android:id="@+id/bonusSecondaryImage"
             android:contentDescription="@string/secondaryImageDescription"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/bonusMainImage"
             android:src="@drawable/optional_2nd_image"
-            android:scaleType="centerInside"
+            android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             android:layout_margin="8dp"/>
 
@@ -137,11 +137,11 @@
         <ImageView
             android:id="@+id/bonusSampleImage"
             android:contentDescription="@string/sampleImageDescription"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/additionalBonusDetails"
             android:src="@drawable/sample_image_missing"
-            android:scaleType="centerInside"
+            android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             android:layout_margin="8dp"/>
 

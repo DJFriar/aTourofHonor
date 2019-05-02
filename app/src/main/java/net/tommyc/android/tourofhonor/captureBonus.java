@@ -142,7 +142,12 @@ public class captureBonus extends AppCompatActivity {
 
         // Process the Sample Image
         bonusSampleImage = findViewById(R.id.bonusSampleImage);
-        Glide.with(this).load("https://www.tourofhonor.com/appimages/2019fl4.jpg").into(bonusSampleImage);
+        Glide
+                .with(this)
+                .load("https://www.tourofhonor.com/appimages/2019" + bonusCode.getText().toString().toLowerCase() + ".jpg")
+                .placeholder(R.drawable.sample_image_missing)
+                .into(bonusSampleImage);
+
 
         btnSubmitBonus = findViewById(R.id.btnSubmitBonus);
         btnSubmitBonus.setOnClickListener(new View.OnClickListener() {
