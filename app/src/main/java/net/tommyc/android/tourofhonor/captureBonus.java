@@ -119,6 +119,7 @@ public class captureBonus extends AppCompatActivity {
         bonusFlavorContent = findViewById(R.id.bonusFlavorContent);
         bonusFlavorContent.setText(sFlavor);
 
+
         // Adjust submission email if category is National Parks
         if (bonusCategory.getText().toString().equals("National Parks")) {
             submissionEmailAddress = "nps_photos@tourofhonor.com";
@@ -148,6 +149,8 @@ public class captureBonus extends AppCompatActivity {
                 .placeholder(R.drawable.sample_image_missing)
                 .into(bonusSampleImage);
 
+        // Populate Image Wells with Captured Images
+        replacePrimaryImageWithCapturedImage();
 
         btnSubmitBonus = findViewById(R.id.btnSubmitBonus);
         btnSubmitBonus.setOnClickListener(new View.OnClickListener() {
@@ -172,6 +175,16 @@ public class captureBonus extends AppCompatActivity {
                 Log.v("User Action", "Optional Image Tapped");
             }
         });
+
+        bonusGPSCoordinates = findViewById(R.id.bonusGPSCoordinates);
+        bonusGPSCoordinates.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openGoogleMaps();
+                Log.v("User Action", "Going to Google Maps");
+            }
+        });
+
+
         File f = new File(imagePath);
         if (!f.exists()) {
             Log.e("App Setup","Tour of Honor folder has been created");
@@ -215,6 +228,19 @@ public class captureBonus extends AppCompatActivity {
         }
     }
 
+    private void replacePrimaryImageWithCapturedImage() {
+        imageViewMain = findViewById(R.id.bonusMainImage);
+        String mainImageFileName = "2019_" + riderNumToH + "_" + bonusCode.getText() + "_1.jpg";
+        File primaryImage = new File
+                (imagePath + "/" + mainImageFileName);
+        Glide
+                .with(this)
+                .load(primaryImage)
+                .placeholder(R.drawable.no_image_taken)
+                .into(imageViewMain);
+
+    }
+
     private void dispatchTakeMainPictureIntent() {
         Intent takeMainPictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -245,8 +271,8 @@ public class captureBonus extends AppCompatActivity {
         // Create an image file name
         //String imagePath = Environment.getExternalStoragePublicDirectory(
         //        Environment.DIRECTORY_PICTURES).toString();
-        String mainImageFileName = "2019_" + riderNumToH + "_BonusCode_1.jpg";
-        String secondaryImageFileName = "2019_" + riderNumToH + "_BonusCode_2.jpg";
+        String mainImageFileName = "2019_" + riderNumToH + "_" + bonusCode.getText() + "_1.jpg";
+        String secondaryImageFileName = "2019_" + riderNumToH + "_" + bonusCode.getText() + "_2.jpg";
         if (tappedImageView == 0) {
             File capturedImage = new File(imagePath, mainImageFileName);
             mainPhotoPath = capturedImage.getAbsolutePath();
@@ -282,5 +308,17 @@ public class captureBonus extends AppCompatActivity {
             }
         }
         this.startActivity(Intent.createChooser(sendEmailIntent, "Sending email..."));
+    }
+
+    public void openGoogleMaps() {
+        // Example URL is https://www.google.com/maps/search/?api=1&query=47.5951518,-122.3316393
+        // String baseMapsURL = "https://www.google.com/maps/search/?api=1&query=";
+        Log.e(TAG,"geo:" + bonusGPSCoordinates.getText());
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + bonusGPSCoordinates.getText() + "&mode=d");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapIntent);
+        }
     }
 }

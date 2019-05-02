@@ -98,7 +98,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_below="@id/bonusCity"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:clickable="true"
+                android:focusable="true"/>
 
         </RelativeLayout>
 
@@ -106,7 +108,7 @@
             android:id="@+id/bonusMainImage"
             android:contentDescription="@string/mainImageDescription"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="240dp"
             android:layout_below="@id/bonusLocationInfo"
             android:src="@drawable/no_image_taken"
             android:scaleType="fitCenter"
@@ -119,7 +121,7 @@
             android:id="@+id/bonusSecondaryImage"
             android:contentDescription="@string/secondaryImageDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="240dp"
             android:layout_below="@id/bonusMainImage"
             android:src="@drawable/optional_2nd_image"
             android:scaleType="fitCenter"
@@ -138,7 +140,7 @@
             android:id="@+id/bonusSampleImage"
             android:contentDescription="@string/sampleImageDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="240dp"
             android:layout_below="@id/additionalBonusDetails"
             android:src="@drawable/sample_image_missing"
             android:scaleType="fitCenter"
