@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,12 +16,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.support.design.widget.Snackbar;
 
 import static net.tommyc.android.tourofhonor.splashScreen.devModeStatus;
 import static net.tommyc.android.tourofhonor.splashScreen.pillionNum;
 import static net.tommyc.android.tourofhonor.splashScreen.riderNum;
-import static net.tommyc.android.tourofhonor.splashScreen.targetState;
 import static net.tommyc.android.tourofhonor.splashScreen.tohPreferences;
 
 public class appSettings extends AppCompatActivity {
@@ -33,7 +32,7 @@ public class appSettings extends AppCompatActivity {
     String pillionNumToH = "000";
     String targetStateToH = "XX";
 
-    String myEmailAddress = "me@tommyc.net";
+    String myEmailAddress = "appsupport@tourofhonor.com";
     String appVersionName;
     String jsonVersionName = "JSON 2019";
     TextView versionDisplay;
@@ -80,12 +79,16 @@ public class appSettings extends AppCompatActivity {
         */
 
         fieldPillionNumber = findViewById(R.id.fieldPillionNumber);
+
+        /*
         fieldPillionNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 editPillionNumberText.getText().clear();
             }
         });
+        */
+
         sharedpreferences = getSharedPreferences(tohPreferences,
                 Context.MODE_PRIVATE);
         if (sharedpreferences.contains(riderNum)) {
@@ -128,10 +131,10 @@ public class appSettings extends AppCompatActivity {
         }
         riderNumToH = fieldRiderNumber.getText().toString();
         pillionNumToH = fieldPillionNumber.getText().toString();
-        targetStateToH = fieldTargetState.getText().toString();
+        //targetStateToH = fieldTargetState.getText().toString();
         editor.putString(riderNum, riderNumToH);
         editor.putString(pillionNum, pillionNumToH);
-        editor.putString(targetState, targetStateToH);
+        //editor.putString(targetState, targetStateToH);
         editor.apply();
         Log.e("appSettings","Screen Values " + riderNumToH + " / " + pillionNumToH);
         Log.e("appSettings","Retrieved Values: " + riderNum + " / " + pillionNum);
@@ -161,7 +164,7 @@ public class appSettings extends AppCompatActivity {
         sendEmailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         sendEmailIntent.setType("plain/text");
         sendEmailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{myEmailAddress});
-        sendEmailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "TOH Feedback from Rider " + riderNumToH);
+        sendEmailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "aTOH Feedback from Rider " + riderNumToH);
         sendEmailIntent.putExtra(Intent.EXTRA_TEXT, "\n\nSent from TOH App\nAndroid Version " + appVersionName);
         this.startActivity(Intent.createChooser(sendEmailIntent, "Sending email..."));
     }

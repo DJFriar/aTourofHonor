@@ -105,51 +105,53 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
         return mDataBase != null;
     }
 
+    /* I don't think this function is used at all now.
     public Cursor getAppDataFilteredBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sState = 'CA'", null);
         return data;
     }
+    */
 
     Cursor getAppDataTOHBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Tour of Honor' ORDER BY sCode", null);
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Tour of Honor' ORDER BY sState,sCode", null);
         return data;
     }
 
     Cursor getAppDataDBBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Doughboys' ORDER BY sCode", null);
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Doughboys' ORDER BY sState,sCode", null);
         return data;
     }
 
     Cursor getAppDataHueyBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Hueys' ORDER BY sCode", null);
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Hueys' ORDER BY sState,sCode", null);
         return data;
     }
 
     Cursor getAppDataGSBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Gold Star Family' ORDER BY sCode", null);
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Gold Star Family' ORDER BY sState,sCode", null);
         return data;
     }
 
     Cursor getAppDataNPBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'National Parks' ORDER BY sCode", null);
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'National Parks' ORDER BY sState,sCode", null);
         return data;
     }
 
     Cursor getAppDataK9Bonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'War Dogs' ORDER BY sCode", null);
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'War Dogs' ORDER BY sState,sCode", null);
         return data;
     }
 
     Cursor getAppDataMTrBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Madonna Trail' ORDER BY sCode", null);
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Madonna Trail' ORDER BY sState,sCode", null);
         return data;
     }
 
