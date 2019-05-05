@@ -28,8 +28,8 @@ public class appSettings extends AppCompatActivity {
     public EditText editPillionNumberText;
 
     SharedPreferences sharedpreferences;
-    String riderNumToH = "000";
-    String pillionNumToH = "000";
+    String riderNumToH = "0000";
+    String pillionNumToH = "0000";
     String targetStateToH = "XX";
 
     String myEmailAddress = "appsupport@tourofhonor.com";
@@ -69,15 +69,6 @@ public class appSettings extends AppCompatActivity {
         //fieldTargetState = findViewById(R.id.fieldTargetState);
 
         fieldRiderNumber = findViewById(R.id.fieldRiderNumber);
-        /**
-        fieldRiderNumber.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editRiderNumberText.getText().clear();
-            }
-        });
-        */
-
         fieldPillionNumber = findViewById(R.id.fieldPillionNumber);
 
         /*
@@ -93,14 +84,14 @@ public class appSettings extends AppCompatActivity {
                 Context.MODE_PRIVATE);
         if (sharedpreferences.contains(riderNum)) {
             Log.e("appSettings","riderNum set to " + riderNum);
-            fieldRiderNumber.setText(sharedpreferences.getString(riderNum, "000"));
+            fieldRiderNumber.setText(sharedpreferences.getString(riderNum, "0000"));
             riderNumToH = fieldRiderNumber.getText().toString();
         } else {
             Log.e("appSettings","riderNum Failed");
         }
         if (sharedpreferences.contains(pillionNum)) {
             Log.e("appSettings","pillionNum set to " + pillionNum);
-            fieldPillionNumber.setText(sharedpreferences.getString(pillionNum, "000"));
+            fieldPillionNumber.setText(sharedpreferences.getString(pillionNum, "0000"));
             pillionNumToH = fieldPillionNumber.getText().toString();
         } else {
             Log.e("appSettings","pillionNum Failed");

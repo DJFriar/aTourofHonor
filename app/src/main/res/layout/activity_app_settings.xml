@@ -45,7 +45,7 @@
             android:background="@android:color/transparent"
             android:inputType="number"
             android:hint="@string/defaultRiderNumber"
-            android:maxLength="3"/>
+            android:maxLength="4"/>
 
     </RelativeLayout>
 
@@ -75,7 +75,7 @@
             android:layout_alignParentEnd="true"
             android:background="@android:color/transparent"
             android:inputType="number"
-            android:maxLength="3"
+            android:maxLength="4"
             android:hint="@string/defaultRiderNumber"/>
 
     </RelativeLayout>

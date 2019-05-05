@@ -1,19 +1,14 @@
 package net.tommyc.android.tourofhonor;
 
-import android.Manifest;
 import android.app.DownloadManager;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -35,12 +30,12 @@ public class splashScreen extends AppCompatActivity {
     public static String riderNumToH;
     public static String pillionNumToH;
     public static String targetStateToH;
-    public static boolean devModeOn = false;
+    //public static boolean devModeOn = false;
 
     ArrayList<Long> list = new ArrayList<>();
-    private DownloadManager downloadManager;
-    private long refid;
-    private Uri Download_Uri;
+    //private DownloadManager downloadManager;
+    //private long refid;
+    //private Uri Download_Uri;
 
     UserDataDBHelper userDB;
     AppDataDBHelper appDB;
@@ -87,23 +82,29 @@ public class splashScreen extends AppCompatActivity {
         }
         if (sharedpreferences.contains(targetState)) {
             Log.e("splashScreen","pillionNum set to " + targetState);
-            targetStateToH = sharedpreferences.getString(targetState,"000");
+            targetStateToH = sharedpreferences.getString(targetState,"XX");
         } else {
             Log.e("splashScreen","targetState Failed");
         }
+
+        /*
         if (sharedpreferences.contains(devModeStatus)) {
             Log.e("splashScreen","Dev Mode set to " + devModeStatus + devModeOn);
             devModeOn = sharedpreferences.getBoolean(devModeStatus,false);
         } else {
             Log.e("splashScreen","devModeStatus Failed " +devModeStatus + devModeOn);
         }
+        */
 
+        /*
         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         registerReceiver(onComplete,
                 new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
         Download_Uri = Uri.parse("http://www.tourofhonor.com/2019BonusData.json");
         Log.e("splashScreen onCreate","Attempting to get: " + Download_Uri);
+        */
 
+        /*
         if (isStoragePermissionGranted()) {
 
             Log.e("splashScreen","Entered ifStoragePermissionGranted branch");
@@ -133,6 +134,7 @@ public class splashScreen extends AppCompatActivity {
         } else {
             Log.e("splashScreen onCreate","Exited 'if (!isStoragePermissionGranted' on the else branch");
         }
+        */
     }
 
     public void goToAppSettings (View View) {
@@ -153,6 +155,7 @@ public class splashScreen extends AppCompatActivity {
         startActivity(goToBonusList);
     }
 
+    /*
     public boolean isStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -168,6 +171,7 @@ public class splashScreen extends AppCompatActivity {
             return true;
         }
     }
+    */
 
     public boolean isFileExists(String filename){
 

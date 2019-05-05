@@ -1,7 +1,9 @@
 package net.tommyc.android.tourofhonor;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -133,13 +135,13 @@ public class captureBonus extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(tohPreferences,
                 Context.MODE_PRIVATE);
         if (sharedpreferences.contains(riderNum)) {
-            riderNumToH = sharedpreferences.getString(riderNum,"000");
+            riderNumToH = sharedpreferences.getString(riderNum,"0000");
             Log.e(TAG,"riderNum set to " + riderNum);
         } else {
             Log.e("captureBonus","riderNum Failed");
         }
         if (sharedpreferences.contains(pillionNum)) {
-            pillionNumToH = sharedpreferences.getString(pillionNum,"000");
+            pillionNumToH = sharedpreferences.getString(pillionNum,"0000");
             Log.e("captureBonus","pillionNum set to " + pillionNum);
         } else {
             Log.e("captureBonus","pillionNum Failed");
@@ -168,7 +170,31 @@ public class captureBonus extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.e(TAG,"Submit Bonus button was tapped.");
-                dispatchSubmitBonusIntent();
+                if (isImageExists(optionalCapturedPhotoName)) {
+                    dispatchSubmitMultiBonusIntent();
+                } else if (isImageExists(primaryCapturedPhotoName)) {
+                    dispatchSubmitSingleBonusIntent();
+                } else {
+                    Log.e(TAG,"No Images Found to Submit");
+
+                    AlertDialog alertDialog = new AlertDialog.Builder(captureBonus.this).create();
+                    alertDialog.setTitle("Error");
+                    alertDialog.setMessage("No images found to submit.");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+
+                    /*
+                    Snackbar.make(findViewById(R.id.appSettingsView), R.string.noImagesFound,
+                            Snackbar.LENGTH_SHORT)
+                            .show();
+                    */
+                    return;
+                }
             }
         });
         imageViewMain = findViewById(R.id.bonusMainImage);
@@ -196,13 +222,12 @@ public class captureBonus extends AppCompatActivity {
             }
         });
 
-
         File f = new File(imagePath);
         if (!f.exists()) {
-            Log.e("App Setup","Tour of Honor folder has been created");
+            Log.i("App Setup","Tour of Honor folder has been created");
             f.mkdirs();
         } else {
-            Log.e("App Setup","Tour of Honor folder already existed");
+            Log.v("App Setup","Tour of Honor folder already existed");
         }
     }
 
@@ -218,6 +243,14 @@ public class captureBonus extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
+    }
+
+    public boolean isImageExists(String filename){
+        //File dataDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+        File dataFile = new File(imagePath + "/" + filename);
+        String dataFilePath = dataFile.getAbsolutePath();
+        Log.e(TAG, "isImageExists, Image Found: " + dataFilePath);
+        return dataFile.exists();
     }
 
     @Override
@@ -309,7 +342,8 @@ public class captureBonus extends AppCompatActivity {
     /**
      * Submits the bonus images via email.
      */
-    private void OLDdispatchSubmitBonusIntent() {
+    private void dispatchSubmitSingleBonusIntent() {
+        Log.e(TAG, "entering dispatchSubmitSingleBonusIntent");
         Intent sendEmailIntent = new Intent(Intent.ACTION_SEND);
         sendEmailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         sendEmailIntent.setType("text/plain");
@@ -319,18 +353,14 @@ public class captureBonus extends AppCompatActivity {
         if (mainPhotoPath != null) {
             sendEmailIntent.putExtra(android.content.Intent.EXTRA_STREAM, FileProvider.getUriForFile(captureBonus.this, "net.tommyc.android.tourofhonor", mainPhotoUri));
             Log.v("MainImageFound", mainPhotoPath + "|" + mainPhotoUri);
-            if (secondaryPhotoPath != null) {
-                sendEmailIntent.putExtra(android.content.Intent.EXTRA_STREAM, FileProvider.getUriForFile(captureBonus.this, "net.tommyc.android.tourofhonor", secondaryPhotoUri));
-                Log.v("SecondaryImageFound", secondaryPhotoPath + "|" + secondaryPhotoUri);
-            } else {
+        } else {
                 Log.e("NoImageFound", "Image Not Found");
             }
-        }
         this.startActivity(Intent.createChooser(sendEmailIntent, "Sending email..."));
     }
 
-    public void dispatchSubmitBonusIntent() {
-        Log.e(TAG, "entering dispatchSubmitBonusIntent");
+    public void dispatchSubmitMultiBonusIntent() {
+        Log.e(TAG, "entering dispatchSubmitMultiBonusIntent");
 
         //need to "send multiple" to use more than one attachment
         final Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
@@ -344,12 +374,10 @@ public class captureBonus extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_TEXT, "Sent via TOH App for Android");
 
         // Get the attachments
-        ArrayList<Uri> uris = new ArrayList<Uri>();
-        //Uri[] filePaths = new Uri[] {Uri.fromFile(new File(primaryCapturedPhotoName)), Uri.fromFile(new File(optionalCapturedPhotoName))};
+        ArrayList<Uri> uris = new ArrayList<>();
         String[] filePaths = new String[] {primaryCapturedPhotoFullPath,optionalCapturedPhotoFullPath};
         for (String file : filePaths) {
             File fileIn = new File(file);
-            //Uri u = Uri.fromFile(fileIn);
             Uri u = FileProvider.getUriForFile(captureBonus.this, "net.tommyc.android.tourofhonor", fileIn);
             uris.add(u);
             Log.e(TAG,uris.toString());

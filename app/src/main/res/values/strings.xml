@@ -38,10 +38,11 @@
     <string name="secondaryImageDescription" translatable="false">Secondary Image</string>
     <string name="sampleImageDescription" translatable="false">Sample Image</string>
     <string name="tohLogoDescription">Tour of Honor Logo</string>
-    <string name="defaultRiderNumber" translatable="false">000</string>
+    <string name="defaultRiderNumber" translatable="false">0000</string>
     <string name="resultsSettingsSaved">Your settings have been saved.</string>
     <string name="devModeEnabled">Developer Mode Enabled</string>
     <string name="devModeDisabled" translatable="false">Developer Mode Disabled</string>
+    <string name="noImagesFound" translatable="false">No images found to submit.</string>
     <string name="pipe" translatable="false"> | </string>
     <string name="imageDescriptionTOHLogo" translatable="false">Tour of Honor Logo </string>
     <string name="imageDescriptionSettingsIcon" translatable="false">Settings Icon </string>
