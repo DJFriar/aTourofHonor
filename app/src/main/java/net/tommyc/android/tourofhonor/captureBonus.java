@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static net.tommyc.android.tourofhonor.splashScreen.pillionNum;
 import static net.tommyc.android.tourofhonor.splashScreen.riderNum;
@@ -74,6 +75,10 @@ public class captureBonus extends AppCompatActivity {
     String imageFolder = "Tour of Honor";
     String imagePath = Environment.getExternalStoragePublicDirectory(
             Environment.DIRECTORY_PICTURES + "/" + imageFolder).toString();
+    String primaryCapturedPhotoName;
+    String optionalCapturedPhotoName;
+    String primaryCapturedPhotoFullPath;
+    String optionalCapturedPhotoFullPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +124,6 @@ public class captureBonus extends AppCompatActivity {
         bonusFlavorContent = findViewById(R.id.bonusFlavorContent);
         bonusFlavorContent.setText(sFlavor);
 
-
         // Adjust submission email if category is National Parks
         if (bonusCategory.getText().toString().equals("National Parks")) {
             submissionEmailAddress = "nps_photos@tourofhonor.com";
@@ -149,13 +153,21 @@ public class captureBonus extends AppCompatActivity {
                 .placeholder(R.drawable.sample_image_missing)
                 .into(bonusSampleImage);
 
+        // Setup variables for later use
+        primaryCapturedPhotoName = "2019_" + riderNumToH + "_" + bonusCode.getText() + "_1.jpg";
+        optionalCapturedPhotoName = "2019_" + riderNumToH + "_" + bonusCode.getText() + "_2.jpg";
+        primaryCapturedPhotoFullPath = imagePath + "/" + primaryCapturedPhotoName;
+        optionalCapturedPhotoFullPath = imagePath + "/" + optionalCapturedPhotoName;
+
         // Populate Image Wells with Captured Images
         replacePrimaryImageWithCapturedImage();
+        replaceOptionalImageWithCapturedImage();
 
         btnSubmitBonus = findViewById(R.id.btnSubmitBonus);
         btnSubmitBonus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e(TAG,"Submit Bonus button was tapped.");
                 dispatchSubmitBonusIntent();
             }
         });
@@ -230,15 +242,24 @@ public class captureBonus extends AppCompatActivity {
 
     private void replacePrimaryImageWithCapturedImage() {
         imageViewMain = findViewById(R.id.bonusMainImage);
-        String mainImageFileName = "2019_" + riderNumToH + "_" + bonusCode.getText() + "_1.jpg";
         File primaryImage = new File
-                (imagePath + "/" + mainImageFileName);
+                (imagePath + "/" + primaryCapturedPhotoName);
         Glide
                 .with(this)
                 .load(primaryImage)
                 .placeholder(R.drawable.no_image_taken)
                 .into(imageViewMain);
+    }
 
+    private void replaceOptionalImageWithCapturedImage() {
+        imageViewSecondary = findViewById(R.id.bonusSecondaryImage);
+        File optionalImage = new File
+                (imagePath + "/" + optionalCapturedPhotoName);
+        Glide
+                .with(this)
+                .load(optionalImage)
+                .placeholder(R.drawable.no_image_taken)
+                .into(imageViewSecondary);
     }
 
     private void dispatchTakeMainPictureIntent() {
@@ -269,8 +290,6 @@ public class captureBonus extends AppCompatActivity {
 
     private File createImageFile() throws IOException {
         // Create an image file name
-        //String imagePath = Environment.getExternalStoragePublicDirectory(
-        //        Environment.DIRECTORY_PICTURES).toString();
         String mainImageFileName = "2019_" + riderNumToH + "_" + bonusCode.getText() + "_1.jpg";
         String secondaryImageFileName = "2019_" + riderNumToH + "_" + bonusCode.getText() + "_2.jpg";
         if (tappedImageView == 0) {
@@ -290,13 +309,13 @@ public class captureBonus extends AppCompatActivity {
     /**
      * Submits the bonus images via email.
      */
-    private void dispatchSubmitBonusIntent() {
+    private void OLDdispatchSubmitBonusIntent() {
         Intent sendEmailIntent = new Intent(Intent.ACTION_SEND);
         sendEmailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         sendEmailIntent.setType("text/plain");
         sendEmailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{submissionEmailAddress});
         sendEmailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "2019_" + riderNumToH + "_" + bonusCategory.getText() +"_" + bonusState.getText() + "_" + bonusCity.getText() + "_" + bonusCode.getText());
-        sendEmailIntent.putExtra(Intent.EXTRA_TEXT, "Sent from TOH App\nAndroid Version 0.3.076");
+        sendEmailIntent.putExtra(Intent.EXTRA_TEXT, "Sent via TOH App for Android");
         if (mainPhotoPath != null) {
             sendEmailIntent.putExtra(android.content.Intent.EXTRA_STREAM, FileProvider.getUriForFile(captureBonus.this, "net.tommyc.android.tourofhonor", mainPhotoUri));
             Log.v("MainImageFound", mainPhotoPath + "|" + mainPhotoUri);
@@ -308,6 +327,37 @@ public class captureBonus extends AppCompatActivity {
             }
         }
         this.startActivity(Intent.createChooser(sendEmailIntent, "Sending email..."));
+    }
+
+    public void dispatchSubmitBonusIntent() {
+        Log.e(TAG, "entering dispatchSubmitBonusIntent");
+
+        //need to "send multiple" to use more than one attachment
+        final Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+
+        // Set up the email parameters
+        emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,
+                new String[]{submissionEmailAddress});
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "2019_" + riderNumToH + "_" + bonusCategory.getText() +"_" + bonusState.getText() + "_" + bonusCity.getText() + "_" + bonusCode.getText());
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Sent via TOH App for Android");
+
+        // Get the attachments
+        ArrayList<Uri> uris = new ArrayList<Uri>();
+        //Uri[] filePaths = new Uri[] {Uri.fromFile(new File(primaryCapturedPhotoName)), Uri.fromFile(new File(optionalCapturedPhotoName))};
+        String[] filePaths = new String[] {primaryCapturedPhotoFullPath,optionalCapturedPhotoFullPath};
+        for (String file : filePaths) {
+            File fileIn = new File(file);
+            //Uri u = Uri.fromFile(fileIn);
+            Uri u = FileProvider.getUriForFile(captureBonus.this, "net.tommyc.android.tourofhonor", fileIn);
+            uris.add(u);
+            Log.e(TAG,uris.toString());
+        }
+
+        // Add the attachments to the email and trigger the email intent
+        emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+        this.startActivity(Intent.createChooser(emailIntent, "Sending email ..."));
     }
 
     public void openGoogleMaps() {

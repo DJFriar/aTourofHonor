@@ -34,8 +34,8 @@ android {
         applicationId "net.tommyc.android.tourofhonor"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 6
-        versionName "2019.5.2." + versionBuild
+        versionCode 7
+        versionName "2019.5.3." + versionBuild
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
