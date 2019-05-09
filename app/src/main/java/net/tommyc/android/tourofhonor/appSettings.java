@@ -137,7 +137,7 @@ public class appSettings extends AppCompatActivity {
     private String getVersionName() {
         appVersionName = BuildConfig.VERSION_NAME;
         versionDisplay = findViewById(R.id.lblAppVersionInfo);
-        versionDisplay.setText("Version " + appVersionName + " | " + jsonVersionName);
+        versionDisplay.setText("Version " + appVersionName);
         return appVersionName;
     }
 

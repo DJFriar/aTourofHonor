@@ -214,6 +214,6 @@ public class splashScreen extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(onComplete);
+        //unregisterReceiver(onComplete);
     }
 }
