@@ -101,18 +101,6 @@ public class bonusListing extends AppCompatActivity {
                 return true;
                 */
 
-                /*
-            case R.id.action_filter:
-                Log.e(TAG,"action_filter");
-                // Populate the ListView w/ filtered data
-                ListView listView = findViewById(R.id.lvBonusData);
-                Cursor data = appDBHelper.getAppDataFilteredBonuses();
-                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
-                return true;
-                */
-
             case R.id.action_filter_TOH:
                 Log.e(TAG,"action_filter_TOH");
                 // Populate the ListView w/ filtered data

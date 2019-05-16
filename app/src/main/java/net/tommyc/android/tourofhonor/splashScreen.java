@@ -30,12 +30,8 @@ public class splashScreen extends AppCompatActivity {
     public static String riderNumToH;
     public static String pillionNumToH;
     public static String targetStateToH;
-    //public static boolean devModeOn = false;
 
     ArrayList<Long> list = new ArrayList<>();
-    //private DownloadManager downloadManager;
-    //private long refid;
-    //private Uri Download_Uri;
 
     UserDataDBHelper userDB;
     AppDataDBHelper appDB;
@@ -86,55 +82,6 @@ public class splashScreen extends AppCompatActivity {
         } else {
             Log.e("splashScreen","targetState Failed");
         }
-
-        /*
-        if (sharedpreferences.contains(devModeStatus)) {
-            Log.e("splashScreen","Dev Mode set to " + devModeStatus + devModeOn);
-            devModeOn = sharedpreferences.getBoolean(devModeStatus,false);
-        } else {
-            Log.e("splashScreen","devModeStatus Failed " +devModeStatus + devModeOn);
-        }
-        */
-
-        /*
-        downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-        registerReceiver(onComplete,
-                new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-        Download_Uri = Uri.parse("http://www.tourofhonor.com/2019BonusData.json");
-        Log.e("splashScreen onCreate","Attempting to get: " + Download_Uri);
-        */
-
-        /*
-        if (isStoragePermissionGranted()) {
-
-            Log.e("splashScreen","Entered ifStoragePermissionGranted branch");
-
-            if (isFileExists("BonusData.json")) {
-                Log.e("splashScreen","Existing JSON found, deleting it");
-                deleteFile("BonusData.json");
-            } else {
-                Log.e("splashScreen","Existing JSON not found");
-            }
-            Log.e("splashScreen onCreate","Entered DownloadManager.request");
-            list.clear();
-
-            DownloadManager.Request request = new DownloadManager.Request(Download_Uri);
-            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-            request.setAllowedOverRoaming(false);
-            request.setTitle("Downloading Bonus Data " + "BonusData" + ".json");
-            request.setDescription("Downloading " + "BonusData" + ".json");
-            request.setVisibleInDownloadsUi(true);
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOCUMENTS, "/Tour of Honor/" + "/" + "BonusData" + ".json");
-            Log.e("splashScreen","Download Dest is: " + Environment.DIRECTORY_DOCUMENTS + "/Tour of Honor/" + "BonusData" + ".json");
-
-            refid = downloadManager.enqueue(request);
-
-            Log.e("OUT", "" + refid);
-            list.add(refid);
-        } else {
-            Log.e("splashScreen onCreate","Exited 'if (!isStoragePermissionGranted' on the else branch");
-        }
-        */
     }
 
     public void goToAppSettings (View View) {

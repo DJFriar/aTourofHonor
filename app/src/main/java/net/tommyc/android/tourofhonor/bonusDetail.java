@@ -48,13 +48,6 @@ public class bonusDetail extends AppCompatActivity {
         bonusAddress.setText(sAddress);
         bonusGPS = findViewById(R.id.bonusCoordinates);
         bonusGPS.setText(sGPS);
-
-        /*
-        // Get Associated Sample Image
-        ImageView imageView = findViewById(R.id.bonusSampleImage);
-        imageView = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-        imageView.setImageBitmap(bitmap);
-        */
     }
 
     @Override
@@ -62,27 +55,4 @@ public class bonusDetail extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
     }
-
-    /*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 1) {
-
-                if (tappedImageView == 0) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(mainPhotoPath);
-                    imageViewMain.setImageBitmap(bitmap);
-                } else if (tappedImageView == 1) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(secondaryPhotoPath);
-                    imageViewSecondary.setImageBitmap(bitmap);
-                } else {
-                    Log.w("ERROR", "onActivityResult: valid view ID not found (" + tappedImageView + ")");
-                }
-
-            }
-        }
-    }
-    */
-
 }

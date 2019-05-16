@@ -34,8 +34,8 @@ android {
         applicationId "net.tommyc.android.tourofhonor"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 11
-        versionName "2019.5.7." + versionBuild
+        versionCode 13
+        versionName "2019.5.9." + versionBuild
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -58,7 +58,6 @@ android {
 
 repositories {
     google()
-    //mavenCentral()
     jcenter()
     maven { url "https://jitpack.io" }
     maven { url 'https://maven.google.com' }

@@ -107,6 +107,7 @@ public class captureBonus extends AppCompatActivity {
         String sCity = data.getString(data.getColumnIndex("sCity"));
         String sState = data.getString(data.getColumnIndex("sState"));
         String sFlavor = data.getString(data.getColumnIndex("sFlavor"));
+        String sImageName = data.getString(data.getColumnIndex("sImageName"));
 
         // Populate the view data values
         bonusCode = findViewById(R.id.bonusCode);
@@ -151,7 +152,7 @@ public class captureBonus extends AppCompatActivity {
         bonusSampleImage = findViewById(R.id.bonusSampleImage);
         Glide
                 .with(this)
-                .load("https://www.tourofhonor.com/appimages/2019" + bonusCode.getText().toString().toLowerCase() + ".jpg")
+                .load("https://www.tourofhonor.com/appimages/" + sImageName)
                 .placeholder(R.drawable.sample_image_missing)
                 .into(bonusSampleImage);
 

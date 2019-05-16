@@ -71,15 +71,6 @@ public class appSettings extends AppCompatActivity {
         fieldRiderNumber = findViewById(R.id.fieldRiderNumber);
         fieldPillionNumber = findViewById(R.id.fieldPillionNumber);
 
-        /*
-        fieldPillionNumber.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editPillionNumberText.getText().clear();
-            }
-        });
-        */
-
         sharedpreferences = getSharedPreferences(tohPreferences,
                 Context.MODE_PRIVATE);
         if (sharedpreferences.contains(riderNum)) {
@@ -96,15 +87,6 @@ public class appSettings extends AppCompatActivity {
         } else {
             Log.e("appSettings","pillionNum Failed");
         }
-        /*
-        if (sharedpreferences.contains(targetState)) {
-            Log.e("appSettings","targetState set to " + targetState);
-            fieldTargetState.setText(sharedpreferences.getString(targetState, "XX"));
-            targetStateToH = fieldTargetState.getText().toString();
-        } else {
-            Log.e("appSettings","targetState Failed");
-        }
-        */
     }
 
     public void saveRiderInfo(View view) {
@@ -147,9 +129,6 @@ public class appSettings extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * Submits the bonus images via email.
-     */
     private void dispatchAppFeedbackIntent() {
         Intent sendEmailIntent = new Intent(Intent.ACTION_SEND);
         sendEmailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
