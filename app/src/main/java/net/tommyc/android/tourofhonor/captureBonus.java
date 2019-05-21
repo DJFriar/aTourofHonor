@@ -129,7 +129,7 @@ public class captureBonus extends AppCompatActivity {
 
         // Adjust submission email if category is National Parks
         if (bonusCategory.getText().toString().equals("National Parks")) {
-            submissionEmailAddress = "nps_photos@tourofhonor.com";
+            submissionEmailAddress = "npt_photos@tourofhonor.com";
         }
 
         // Grab the rider numbers from SharedPreferences
