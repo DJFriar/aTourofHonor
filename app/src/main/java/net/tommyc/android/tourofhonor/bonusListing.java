@@ -1,17 +1,21 @@
 package net.tommyc.android.tourofhonor;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -30,7 +34,8 @@ public class bonusListing extends AppCompatActivity {
 
     UserDataDBHelper userDBHelper;
     AppDataDBHelper appDBHelper;
-    
+
+    private String chosenState = "";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,17 +187,27 @@ public class bonusListing extends AppCompatActivity {
                 return true;
 
                 /*
-            case R.id.action_filter_State:
-                Log.e(TAG,"action_filter_State");
+
+                Put the following 3 lines in the toolbar.xml:
+
+                <item android:id="@+id/action_filter_state"
+                android:title="@string/btnLblFilterState"
+                app:showAsAction="never" />
+
+            case R.id.action_filter_state:
+                Log.e(TAG,"entering action_filter_State");
+                promptForState(this);
+                //chosenState = "OH";
+                Log.e(TAG,"action_filter_State, returned from prompt");
                 // Populate the ListView w/ filtered data
                 listView = findViewById(R.id.lvBonusData);
-                data = appDBHelper.getAppDataByState();
+                data = appDBHelper.getAppDataByState(chosenState);
                 listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
                         new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
                         new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
                 return true;
-            */
 
+                */
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -232,5 +247,35 @@ public class bonusListing extends AppCompatActivity {
         Intent goToBonusDetail = new Intent(this,bonusDetail.class);
         goToBonusDetail.putExtra("codeTapped",tappedBonus);
         startActivity(goToBonusDetail);
+    }
+
+    public void promptForState(bonusListing view) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter Two Letter State Code");
+
+        // Set up the input
+        final EditText input = new EditText(this);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton("GO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.e(TAG,"chosenState was: " + chosenState);
+                chosenState = input.getText().toString();
+                Log.e(TAG,"chosenState is now: " + chosenState);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 }

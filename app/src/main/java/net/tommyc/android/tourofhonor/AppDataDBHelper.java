@@ -16,7 +16,7 @@ import java.io.OutputStream;
 public class AppDataDBHelper extends SQLiteOpenHelper {
 
     private static String TAG = "AppDataDBHelper"; // Tag just for the LogCat window
-    private static String DB_NAME ="appdata4.db";
+    private static String DB_NAME ="appdata5.db";
     private static String DB_TABLE = "Bonus_Data";
     private static int DB_VERSION = 1;
 
@@ -105,14 +105,6 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
         return mDataBase != null;
     }
 
-    /* I don't think this function is used at all now.
-    public Cursor getAppDataFilteredBonuses() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sState = 'CA'", null);
-        return data;
-    }
-    */
-
     Cursor getAppDataTOHBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Tour of Honor' ORDER BY sState,sCode", null);
@@ -167,9 +159,11 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    Cursor getAppDataByState() {
+    Cursor getAppDataByState(String state) {
+        Log.e(TAG,"Entered getAppDataByState");
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sState = ? ORDER BY sCode", null);
+        String [] args={state};
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sState = ? ORDER BY sCode", args);
         return data;
     }
 
