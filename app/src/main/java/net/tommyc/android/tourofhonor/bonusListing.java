@@ -49,13 +49,13 @@ public class bonusListing extends AppCompatActivity {
         // Handle the appData DB.
         appDBHelper = new AppDataDBHelper(this);
 
-        try {
+        /*try {
             Log.e(TAG,"Calling createDatabase");
             appDBHelper.createDataBase();
         } catch (IOException ioe) {
             throw new Error("Unable to CREATE DATABASE");
         }
-
+*/
         // Grab the target state from SharedPreferences
         sharedpreferences = getSharedPreferences(tohPreferences,
                 Context.MODE_PRIVATE);

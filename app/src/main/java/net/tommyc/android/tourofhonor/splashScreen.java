@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import androidx.core.app.NotificationCompat;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class splashScreen extends AppCompatActivity {
 
@@ -60,6 +62,24 @@ public class splashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.e("splashScreen","Creating Splash Screen");
         setContentView(R.layout.activity_splash_screen);
+
+        Bonus sampleBonus = new Bonus();
+        sampleBonus.sCode = "TX1";
+        sampleBonus.sName = "Test Bonus Texas";
+
+        new RetrieveData().execute("https://www.basicbitch.dev/bonuses.json");
+
+
+
+        // Get singleton instance of database
+        BonusDatabaseHelper databaseHelper = BonusDatabaseHelper.getInstance(this);
+        databaseHelper.addBonus(sampleBonus);
+        List<Bonus> bonuses = databaseHelper.getAllBonus();
+        for (Bonus bonus : bonuses) {
+            // do something
+            Log.e("splashScreen",bonus.sCode);
+        }
+
         userDB = new UserDataDBHelper(this);
 
         sharedpreferences = getSharedPreferences(tohPreferences,

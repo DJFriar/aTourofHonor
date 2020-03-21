@@ -16,8 +16,8 @@ import java.io.OutputStream;
 public class AppDataDBHelper extends SQLiteOpenHelper {
 
     private static String TAG = "AppDataDBHelper"; // Tag just for the LogCat window
-    private static String DB_NAME ="appdata8.db";
-    private static String DB_TABLE = "Bonus_Data";
+    private static String DB_NAME ="appdata2.db";
+    private static String DB_TABLE = "bonuses";
     private static int DB_VERSION = 1;
 
     private SQLiteDatabase mDataBase;
@@ -156,6 +156,7 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
     Cursor getAppDataAllBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " ORDER BY sState,sCode", null);
+        Log.d("INFO", data.toString() );
         return data;
     }
 
