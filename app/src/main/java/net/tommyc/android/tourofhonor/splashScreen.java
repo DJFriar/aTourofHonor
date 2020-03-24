@@ -67,12 +67,14 @@ public class splashScreen extends AppCompatActivity {
         sampleBonus.sCode = "TX1";
         sampleBonus.sName = "Test Bonus Texas";
 
-        new RetrieveData().execute("https://www.basicbitch.dev/bonuses.json");
-
-
 
         // Get singleton instance of database
         BonusDatabaseHelper databaseHelper = BonusDatabaseHelper.getInstance(this);
+        new RetrieveData(databaseHelper).execute("https://www.basicbitch.dev/bonuses.json");
+
+
+
+
         databaseHelper.addBonus(sampleBonus);
         List<Bonus> bonuses = databaseHelper.getAllBonus();
         for (Bonus bonus : bonuses) {

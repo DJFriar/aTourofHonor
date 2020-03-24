@@ -16,7 +16,7 @@ import java.io.OutputStream;
 public class AppDataDBHelper extends SQLiteOpenHelper {
 
     private static String TAG = "AppDataDBHelper"; // Tag just for the LogCat window
-    private static String DB_NAME ="appdata2.db";
+    private static String DB_NAME ="appdata.db";
     private static String DB_TABLE = "bonuses";
     private static int DB_VERSION = 1;
 

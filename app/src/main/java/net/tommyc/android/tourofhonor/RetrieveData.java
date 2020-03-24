@@ -10,12 +10,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 class RetrieveData extends AsyncTask<String, String, String> {
     public String JsonData;
+    public BonusDatabaseHelper dbHelper;
+
+    public RetrieveData(BonusDatabaseHelper bonusDatabaseHelper) {
+        dbHelper = bonusDatabaseHelper;
+    }
 
     @Override
     protected String doInBackground(String... params) {
@@ -39,8 +45,32 @@ class RetrieveData extends AsyncTask<String, String, String> {
                 //Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
 
             }
-            Log.d("FETCH", buffer.toString());
+            //Log.d("FETCH", buffer.toString());
             this.JsonData = buffer.toString();
+            try {
+                // create the json array from String
+                JSONArray json = new JSONArray(this.JsonData);
+                // iterate over the bonuses
+                for (int i=0; i<json.length();i++){
+                    JSONObject obj = (JSONObject) json.get(i);
+                    System.out.println("====obj===="+obj);
+
+                    Bonus newBonus = new Bonus();
+                    newBonus.sCode = obj.getString("bonusCode");
+                    newBonus.sName = obj.getString("bonusName");
+                    newBonus.sCategory = obj.getString("bonusCategory");
+                    newBonus.sAddress = obj.getString("address");
+                    newBonus.sCity = obj.getString("city");
+                    newBonus.sState = obj.getString("state");
+                    newBonus.sGPS = obj.getString("GPS");
+                    newBonus.sImageName = obj.getString("sampleImage");
+
+                    dbHelper.addBonus(newBonus);
+
+                }
+            } catch (JSONException e){
+                e.printStackTrace();
+            }
 
 
 
@@ -63,7 +93,6 @@ class RetrieveData extends AsyncTask<String, String, String> {
         }
         return null;
     }
-
 
 
 }

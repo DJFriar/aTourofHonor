@@ -16,7 +16,7 @@ public class BonusDatabaseHelper extends SQLiteOpenHelper {
     private static BonusDatabaseHelper sInstance;
 
     // Database Info
-    private static final String DATABASE_NAME = "appdata2.db";
+    private static final String DATABASE_NAME = "appdata.db";
     private static final int DATABASE_VERSION = 1;
 
     // Table Names
@@ -189,7 +189,12 @@ public class BonusDatabaseHelper extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
             values.put(KEY_BONUS_SCODE, bonus.sCode);
             values.put(KEY_BONUS_SNAME, bonus.sName);
-
+            values.put(KEY_BONUS_SCATEGORY, bonus.sCategory);
+            values.put(KEY_BONUS_SADDRESS, bonus.sAccess);
+            values.put(KEY_BONUS_SCITY, bonus.sCity);
+            values.put(KEY_BONUS_SSTATE, bonus.sState);
+            values.put(KEY_BONUS_SGPS, bonus.sGPS);
+            values.put(KEY_BONUS_SIMAGENAME, bonus.sImageName);
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             db.insertOrThrow(TABLE_BONUSES, null, values);
             db.setTransactionSuccessful();
