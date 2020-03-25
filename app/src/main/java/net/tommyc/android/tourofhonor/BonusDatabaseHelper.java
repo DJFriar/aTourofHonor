@@ -69,55 +69,36 @@ public class BonusDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    // Insert a post into the database
-    public void addPost(Post post) {
-        // Create and/or open the database for writing
-        SQLiteDatabase db = getWritableDatabase();
-
-        // It's a good idea to wrap our insert in a transaction. This helps with performance and ensures
-        // consistency of the database.
-        db.beginTransaction();
-        try {
-            // The user might already exist in the database (i.e. the same user created multiple posts).
-            long userId = addOrUpdateUser(post.user);
-
-            ContentValues values = new ContentValues();
-            values.put(KEY_POST_USER_ID_FK, userId);
-            values.put(KEY_POST_TEXT, post.text);
-
-            // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
-            db.insertOrThrow(TABLE_POSTS, null, values);
-            db.setTransactionSuccessful();
-        } catch (Exception e) {
-            Log.d(TAG, "Error while trying to add post to database");
-        } finally {
-            db.endTransaction();
-        }
-    }
-    public long addOrUpdateUser(User user) {
+    public long addOrUpdateBonus(Bonus bonus) {
         // The database connection is cached so it's not expensive to call getWriteableDatabase() multiple times.
         SQLiteDatabase db = getWritableDatabase();
-        long userId = -1;
+        long bonusId = -1;
 
         db.beginTransaction();
         try {
             ContentValues values = new ContentValues();
-            values.put(KEY_USER_NAME, user.userName);
-            values.put(KEY_USER_PROFILE_PICTURE_URL, user.profilePictureUrl);
+            values.put(KEY_BONUS_SCODE, bonus.sCode);
+            values.put(KEY_BONUS_SNAME, bonus.sName);
+            values.put(KEY_BONUS_SCATEGORY, bonus.sCategory);
+            values.put(KEY_BONUS_SADDRESS, bonus.sAccess);
+            values.put(KEY_BONUS_SCITY, bonus.sCity);
+            values.put(KEY_BONUS_SSTATE, bonus.sState);
+            values.put(KEY_BONUS_SGPS, bonus.sGPS);
+            values.put(KEY_BONUS_SIMAGENAME, bonus.sImageName);
 
             // First try to update the user in case the user already exists in the database
             // This assumes userNames are unique
-            int rows = db.update(TABLE_USERS, values, KEY_USER_NAME + "= ?", new String[]{user.userName});
+            int rows = db.update(TABLE_BONUSES, values, KEY_BONUS_SCODE + "= ?", new String[]{bonus.sCode});
 
             // Check if update succeeded
             if (rows == 1) {
                 // Get the primary key of the user we just updated
-                String usersSelectQuery = String.format("SELECT %s FROM %s WHERE %s = ?",
-                        KEY_USER_ID, TABLE_USERS, KEY_USER_NAME);
-                Cursor cursor = db.rawQuery(usersSelectQuery, new String[]{String.valueOf(user.userName)});
+                String selectQuery = String.format("SELECT %s FROM %s WHERE %s = ?",
+                        KEY_BONUS_HMY, TABLE_BONUSES, KEY_BONUS_SCODE);
+                Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(bonus.sCode)});
                 try {
                     if (cursor.moveToFirst()) {
-                        userId = cursor.getInt(0);
+                        bonusId = cursor.getInt(0);
                         db.setTransactionSuccessful();
                     }
                 } finally {
@@ -127,7 +108,7 @@ public class BonusDatabaseHelper extends SQLiteOpenHelper {
                 }
             } else {
                 // user with this userName did not already exist, so insert new user
-                userId = db.insertOrThrow(TABLE_USERS, null, values);
+                bonusId = db.insertOrThrow(TABLE_BONUSES, null, values);
                 db.setTransactionSuccessful();
             }
         } catch (Exception e) {
@@ -135,7 +116,7 @@ public class BonusDatabaseHelper extends SQLiteOpenHelper {
         } finally {
             db.endTransaction();
         }
-        return userId;
+        return bonusId;
     }
     public List<Post> getAllPosts() {
         List<Post> posts = new ArrayList<>();
@@ -204,6 +185,20 @@ public class BonusDatabaseHelper extends SQLiteOpenHelper {
             db.endTransaction();
         }
     }
+
+    public Integer getBonusCount(){
+        String BONUSES_SELECT_QUERY =
+                String.format("SELECT * FROM %s", TABLE_BONUSES);
+
+        // "getReadableDatabase()" and "getWriteableDatabase()" return the same object (except under low
+        // disk space scenarios)
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(BONUSES_SELECT_QUERY, null);
+        int result = cursor.getCount();
+        cursor.close();
+        return result;
+    }
+
     public List<Bonus> getAllBonus() {
         List<Bonus> bonuses = new ArrayList<>();
 
@@ -235,7 +230,7 @@ public class BonusDatabaseHelper extends SQLiteOpenHelper {
 
 
     public void populateBonusTable(){
-        //new RetrieveData(sInstance).execute("https://www.basicbitch.dev/bonuses.json");
+        new RetrieveData(sInstance).execute("https://www.basicbitch.dev/bonuses.json");
         Log.d(TAG, "populateBonusTable: grabbed data");
     }
     // Called when the database connection is being configured.

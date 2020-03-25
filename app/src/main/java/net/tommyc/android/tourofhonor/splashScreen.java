@@ -63,23 +63,19 @@ public class splashScreen extends AppCompatActivity {
         Log.e("splashScreen","Creating Splash Screen");
         setContentView(R.layout.activity_splash_screen);
 
-        Bonus sampleBonus = new Bonus();
-        sampleBonus.sCode = "TX1";
-        sampleBonus.sName = "Test Bonus Texas";
-
-
         // Get singleton instance of database
         BonusDatabaseHelper databaseHelper = BonusDatabaseHelper.getInstance(this);
-        new RetrieveData(databaseHelper).execute("https://www.basicbitch.dev/bonuses.json");
+        //new RetrieveData(databaseHelper).execute("https://www.basicbitch.dev/bonuses.json");
+        Integer countB = databaseHelper.getBonusCount();
+        Log.e("count", countB.toString() );
+        if (countB > 0){
+            new UpdateData(databaseHelper).execute("https://www.basicbitch.dev/changes.json");
 
-
-
-
-        databaseHelper.addBonus(sampleBonus);
+        }
         List<Bonus> bonuses = databaseHelper.getAllBonus();
         for (Bonus bonus : bonuses) {
             // do something
-            Log.e("splashScreen",bonus.sCode);
+            //Log.e("splashScreen",bonus.sCode);
         }
 
         userDB = new UserDataDBHelper(this);
