@@ -150,9 +150,10 @@ public class captureBonus extends AppCompatActivity {
 
         // Process the Sample Image
         bonusSampleImage = findViewById(R.id.bonusSampleImage);
+        Log.e(TAG, "https://www.tourofhonor.com/2020appimages/" + sImageName );
         Glide
                 .with(this)
-                .load("https://www.tourofhonor.com/appimages/" + sImageName)
+                .load("https://www.tourofhonor.com/2020appimages/" + sImageName)
                 .placeholder(R.drawable.sample_image_missing)
                 .into(bonusSampleImage);
 

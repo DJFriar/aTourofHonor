@@ -53,7 +53,7 @@ class RetrieveData extends AsyncTask<String, String, String> {
                 // iterate over the bonuses
                 for (int i=0; i<json.length();i++){
                     JSONObject obj = (JSONObject) json.get(i);
-                    System.out.println("====obj===="+obj);
+                    //System.out.println("====obj===="+obj);
 
                     Bonus newBonus = new Bonus();
                     newBonus.sCode = obj.getString("bonusCode");
