@@ -5,10 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -16,6 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import static net.tommyc.android.tourofhonor.splashScreen.devModeStatus;
 import static net.tommyc.android.tourofhonor.splashScreen.pillionNum;
@@ -34,7 +36,7 @@ public class appSettings extends AppCompatActivity {
 
     String myEmailAddress = "appsupport@tourofhonor.com";
     String appVersionName;
-    String jsonVersionName = "JSON 2019";
+    String jsonVersionName = "JSON 2020";
     TextView versionDisplay;
     Button btnSendAppFeedback;
     EditText fieldRiderNumber;

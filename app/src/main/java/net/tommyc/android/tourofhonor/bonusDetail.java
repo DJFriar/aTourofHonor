@@ -2,10 +2,11 @@ package net.tommyc.android.tourofhonor;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class bonusDetail extends AppCompatActivity {
 
@@ -44,8 +45,6 @@ public class bonusDetail extends AppCompatActivity {
         bonusName.setText(sName);
         bonusCategory = findViewById(R.id.bonusCategory);
         bonusCategory.setText(sCategory);
-        bonusAddress = findViewById(R.id.bonusAddress);
-        bonusAddress.setText(sAddress);
         bonusGPS = findViewById(R.id.bonusCoordinates);
         bonusGPS.setText(sGPS);
     }

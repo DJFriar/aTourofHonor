@@ -14,15 +14,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import androidx.core.content.FileProvider;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
 
@@ -118,14 +119,10 @@ public class captureBonus extends AppCompatActivity {
         bonusCategory.setText(sCategory);
         bonusGPSCoordinates = findViewById(R.id.bonusGPSCoordinates);
         bonusGPSCoordinates.setText(sGPS);
-        bonusAddress = findViewById(R.id.bonusAddress);
-        bonusAddress.setText(sAddress);
         bonusCity = findViewById(R.id.bonusCity);
         bonusCity.setText(sCity);
         bonusState = findViewById(R.id.bonusState);
         bonusState.setText(sState);
-        bonusFlavorContent = findViewById(R.id.bonusFlavorContent);
-        bonusFlavorContent.setText(sFlavor);
 
         // Adjust submission email if category is National Parks
         if (bonusCategory.getText().toString().equals("National Parks")) {

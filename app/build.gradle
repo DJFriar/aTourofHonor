@@ -31,11 +31,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "net.tommyc.android.tourofhonor"
+        applicationId "net.tommyc.android.tourofhonor2"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 20
-        versionName "20.3.15." + versionBuild
+        versionCode 22
+        versionName "20.3.27." + versionBuild
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -75,4 +75,7 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //In-App Purchase
+    implementation 'com.android.billingclient:billing:2.2.0'
 }

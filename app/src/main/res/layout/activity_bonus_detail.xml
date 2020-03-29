@@ -8,9 +8,10 @@
     android:fillViewport="true">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         tools:context=".bonusDetail">
 
         <RelativeLayout
@@ -18,47 +19,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/toolbar"
             android:layout_margin="8dp">
-
-            <TextView
-                android:id="@+id/bonusCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/valueCategory"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"/>
-
-            <TextView
-                android:id="@+id/bonusCode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/valueBonusCode"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"/>
 
             <TextView
                 android:id="@+id/bonusName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/valueBonusName"
-                android:layout_below="@id/bonusCategory"
-                android:textSize="18sp"/>
+                android:textSize="20sp"/>
 
-            <TextView
-                android:id="@+id/bonusAddress"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_below="@+id/bonusName"
                 android:layout_height="wrap_content"
-                android:text="@string/valueBonusAddress"
-                android:layout_below="@id/bonusName"/>
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/bonusCoordinates"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/valueGPSCoordinates"
-                android:layout_below="@id/bonusAddress"/>
+                <TextView
+                    android:id="@+id/bonusCity"
+                    android:layout_width="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:layout_weight="9"
+                    android:layout_height="wrap_content"
+                    android:text="@string/valueBonusCity" />
+
+                <TextView
+                    android:id="@+id/bonusState"
+                    android:layout_width="0dp"
+                    android:layout_weight=".75"
+                    android:textAlignment="textEnd"
+                    android:layout_height="wrap_content"
+                    android:text="@string/valueBonusState" />
+            </LinearLayout>
+
         </RelativeLayout>
 
         <ImageView
@@ -66,11 +58,39 @@
             android:contentDescription="@string/sampleImageDescription"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/basicBonusInfo"
             android:src="@drawable/sample_image_missing"
             android:scaleType="centerInside"
             android:adjustViewBounds="true"
-            android:layout_margin="8dp"/>
+            android:layout_marginHorizontal="8dp" />
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/bonusCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/valueCategory" />
+
+            <TextView
+                android:id="@+id/bonusCode"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:layout_height="wrap_content"
+                android:text="@string/valueBonusCode" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/bonusCoordinates"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="@string/valueGPSCoordinates" />
+
+    </LinearLayout>
 </ScrollView>
