@@ -230,7 +230,7 @@ public class BonusDatabaseHelper extends SQLiteOpenHelper {
 
 
     public void populateBonusTable(){
-        new RetrieveData(sInstance).execute("https://www.basicbitch.dev/bonuses.json");
+        new RetrieveData(sInstance).execute("https://apps.perrycraft.net/wp-json/toh/v1/bonus-data");
         Log.d(TAG, "populateBonusTable: grabbed data");
     }
     // Called when the database connection is being configured.

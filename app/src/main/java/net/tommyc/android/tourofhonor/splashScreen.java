@@ -65,7 +65,6 @@ public class splashScreen extends AppCompatActivity {
 
         // Get singleton instance of database
         BonusDatabaseHelper databaseHelper = BonusDatabaseHelper.getInstance(this);
-        //new RetrieveData(databaseHelper).execute("https://apps.perrycraft.net/wp-json/toh/v1/bonus-data");
         Integer countB = databaseHelper.getBonusCount();
         Log.e("count", countB.toString() );
         if (countB > 0){
