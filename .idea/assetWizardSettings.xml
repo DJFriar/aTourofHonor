@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_settings_black_24dp" />
-                            <entry key="sourceFile" value="$USER_HOME$" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_filterstate_alt_light" />
+                            <entry key="sourceFile" value="$USER_HOME$/Desktop/TOH APP Assets/Icons/Android/Interface/FilterState_alt_light.svg" />
                           </map>
                         </option>
                       </PersistentState>

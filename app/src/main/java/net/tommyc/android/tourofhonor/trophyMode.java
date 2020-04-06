@@ -1,14 +1,12 @@
 package net.tommyc.android.tourofhonor;
 
-import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.widget.Button;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.view.Menu;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 
 public class trophyMode extends AppCompatActivity {
 
@@ -32,12 +30,12 @@ public class trophyMode extends AppCompatActivity {
         appDBHelper = new AppDataDBHelper(this);
 
 
-        // Populate the list of Trophy Runs
-        ListView listView = findViewById(R.id.lvTrophyRuns);
-        Cursor data = appDBHelper.getAppDataTrophyRuns();
-        listView.setAdapter(new SimpleCursorAdapter(this, R.layout.trophy_run_row_item, data,
-                new String[] {"sTrophyGroup"},
-                new int[] {R.id.trophyGroup}, 0));
+//        // Populate the list of Trophy Runs
+//        ListView listView = findViewById(R.id.lvTrophyRuns);
+//        Cursor data = appDBHelper.getAppDataTrophyRuns();
+//        listView.setAdapter(new SimpleCursorAdapter(this, R.layout.trophy_run_row_item, data,
+//                new String[] {"sTrophyGroup"},
+//                new int[] {R.id.trophyGroup}, 0));
 
         /*
         // Attempt at forcing the height of the ListView

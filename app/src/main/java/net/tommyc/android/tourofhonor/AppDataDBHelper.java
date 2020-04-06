@@ -143,15 +143,15 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
 
     Cursor getAppDataMTrBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Madonna Trail' ORDER BY sState,sCode", null);
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Madonna of the Trail' ORDER BY sState,sCode", null);
         return data;
     }
 
-    Cursor getAppDataTrophyRuns() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sTrophyGroup IS NOT NULL GROUP BY sTrophyGroup", null);
-        return data;
-    }
+//    Cursor getAppDataTrophyRuns() {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sTrophyGroup IS NOT NULL GROUP BY sTrophyGroup", null);
+//        return data;
+//    }
 
     Cursor getAppDataAllBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
