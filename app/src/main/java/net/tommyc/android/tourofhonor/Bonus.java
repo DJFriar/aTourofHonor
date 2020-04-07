@@ -10,8 +10,6 @@ public class Bonus {
     public String sState;
     public String sGPS;
     public String sAccess;
-    public String sFlavor;
-    public String sMadeInAmerica;
     public String sImageName;
     public String sTrophyGroup;
 }

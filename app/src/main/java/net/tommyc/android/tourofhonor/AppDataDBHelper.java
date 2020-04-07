@@ -164,15 +164,13 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
         Log.e(TAG,"Entered getAppDataByState");
         SQLiteDatabase db = this.getWritableDatabase();
         String [] args={state};
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sState = ? ORDER BY sCode", args);
-        return data;
+        return db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sState = ? ORDER BY sCode", args);
     }
 
     Cursor getAppDataSelectedBonus(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String [] args={id};
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCode = ?", args);
-        return data;
+        return db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCode = ?", args);
     }
 
     public Cursor getAppDataListContents() {

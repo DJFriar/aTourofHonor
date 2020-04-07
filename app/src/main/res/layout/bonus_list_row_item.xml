@@ -12,7 +12,7 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="8dp"
-        android:src="@drawable/no_image_taken" />
+        android:src="@drawable/sample_image_missing" />
 
     <TextView
         android:id="@+id/bonusListName"

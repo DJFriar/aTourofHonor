@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -20,7 +17,9 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import java.io.IOException;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import static net.tommyc.android.tourofhonor.splashScreen.targetState;
 import static net.tommyc.android.tourofhonor.splashScreen.tohPreferences;
@@ -186,15 +185,9 @@ public class bonusListing extends AppCompatActivity {
                         new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
                 return true;
 
-                /*
 
-                Put the following 3 lines in the toolbar.xml:
 
-                <item android:id="@+id/action_filter_state"
-                android:title="@string/btnLblFilterState"
-                app:showAsAction="never" />
-
-            case R.id.action_filter_state:
+            case R.id.action_FilterState:
                 Log.e(TAG,"entering action_filter_State");
                 promptForState(this);
                 //chosenState = "OH";
@@ -207,7 +200,7 @@ public class bonusListing extends AppCompatActivity {
                         new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
                 return true;
 
-                */
+
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.

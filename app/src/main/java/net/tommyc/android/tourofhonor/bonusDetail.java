@@ -14,7 +14,6 @@ public class bonusDetail extends AppCompatActivity {
     TextView bonusName;
     TextView bonusCategory;
     TextView bonusCode;
-    TextView bonusAddress;
     TextView bonusGPS;
     String tappedBonusID;
 
@@ -35,7 +34,6 @@ public class bonusDetail extends AppCompatActivity {
         String sCode = data.getString(data.getColumnIndex("sCode"));
         String sName = data.getString(data.getColumnIndex("sName"));
         String sCategory = data.getString(data.getColumnIndex("sCategory"));
-        String sAddress = data.getString(data.getColumnIndex("sAddress"));
         String sGPS = data.getString(data.getColumnIndex("sGPS"));
 
         // Populate the view data values
