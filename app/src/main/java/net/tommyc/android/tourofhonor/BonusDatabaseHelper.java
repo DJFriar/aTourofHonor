@@ -16,7 +16,7 @@ public class BonusDatabaseHelper extends SQLiteOpenHelper {
     private static BonusDatabaseHelper sInstance;
 
     // Database Info
-    private static final String DATABASE_NAME = "appdata.db";
+    private static final String DATABASE_NAME = "appdata2020.db";
     private static final int DATABASE_VERSION = 1;
 
     // Table Names

@@ -241,6 +241,17 @@ public class bonusListing extends AppCompatActivity {
         goToBonusDetail.putExtra("codeTapped",tappedBonus);
         startActivity(goToBonusDetail);
     }
+    protected void filterStateWithValue(String value) {
+        ListView listView;
+        Cursor data;
+        Log.e("MyTAG", "CHOSENSTATE: "+value);
+        // Populate the ListView w/ filtered data
+        listView = findViewById(R.id.lvBonusData);
+        data = appDBHelper.getAppDataByState(chosenState);
+        listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+    }
 
     public void promptForState(bonusListing view) {
 
@@ -257,9 +268,11 @@ public class bonusListing extends AppCompatActivity {
         builder.setPositiveButton("GO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Log.e(TAG,"chosenState was: " + chosenState);
+                //Log.e(TAG,"chosenState was: " + chosenState);
                 chosenState = input.getText().toString();
-                Log.e(TAG,"chosenState is now: " + chosenState);
+                //Log.e(TAG,"chosenState is now: " + chosenState);
+                filterStateWithValue(chosenState);
+
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
