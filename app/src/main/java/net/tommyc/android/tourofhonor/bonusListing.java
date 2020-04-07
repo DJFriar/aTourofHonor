@@ -269,7 +269,7 @@ public class bonusListing extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //Log.e(TAG,"chosenState was: " + chosenState);
-                chosenState = input.getText().toString();
+                chosenState = input.getText().toString().toUpperCase();
                 //Log.e(TAG,"chosenState is now: " + chosenState);
                 filterStateWithValue(chosenState);
 
