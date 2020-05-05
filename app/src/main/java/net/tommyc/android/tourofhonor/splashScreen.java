@@ -67,9 +67,11 @@ public class splashScreen extends AppCompatActivity {
         BonusDatabaseHelper databaseHelper = BonusDatabaseHelper.getInstance(this);
         Integer countB = databaseHelper.getBonusCount();
         Log.e("count", countB.toString() );
+        if (countB < 100) {
+            databaseHelper.forceUpgrade();
+        }
         if (countB > 0){
             new UpdateData(databaseHelper).execute("https://apps.perrycraft.net/wp-json/toh/v1/updates");
-
         }
         List<Bonus> bonuses = databaseHelper.getAllBonus();
         for (Bonus bonus : bonuses) {
