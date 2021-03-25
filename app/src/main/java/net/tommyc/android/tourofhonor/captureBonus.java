@@ -147,16 +147,16 @@ public class captureBonus extends AppCompatActivity {
 
         // Process the Sample Image
         bonusSampleImage = findViewById(R.id.bonusSampleImage);
-        Log.e(TAG, "https://www.tourofhonor.com/2020appimages/" + sImageName );
+        Log.e(TAG, "https://www.tourofhonor.com/2021appimages/" + sImageName );
         Glide
                 .with(this)
-                .load("https://www.tourofhonor.com/2020appimages/" + sImageName)
+                .load("https://www.tourofhonor.com/2021appimages/" + sImageName)
                 .placeholder(R.drawable.sample_image_missing)
                 .into(bonusSampleImage);
 
         // Setup variables for later use
-        primaryCapturedPhotoName = "2020_" + riderNumToH + "_" + bonusCode.getText() + "_1.jpg";
-        optionalCapturedPhotoName = "2020_" + riderNumToH + "_" + bonusCode.getText() + "_2.jpg";
+        primaryCapturedPhotoName = "2021_" + riderNumToH + "_" + bonusCode.getText() + "_1.jpg";
+        optionalCapturedPhotoName = "2021_" + riderNumToH + "_" + bonusCode.getText() + "_2.jpg";
         primaryCapturedPhotoFullPath = imagePath + "/" + primaryCapturedPhotoName;
         optionalCapturedPhotoFullPath = imagePath + "/" + optionalCapturedPhotoName;
 
@@ -322,8 +322,8 @@ public class captureBonus extends AppCompatActivity {
 
     private File createImageFile() throws IOException {
         // Create an image file name
-        String mainImageFileName = "2020_" + riderNumToH + "_" + bonusCode.getText() + "_1.jpg";
-        String secondaryImageFileName = "2020_" + riderNumToH + "_" + bonusCode.getText() + "_2.jpg";
+        String mainImageFileName = "2021_" + riderNumToH + "_" + bonusCode.getText() + "_1.jpg";
+        String secondaryImageFileName = "2021_" + riderNumToH + "_" + bonusCode.getText() + "_2.jpg";
         if (tappedImageView == 0) {
             File capturedImage = new File(imagePath, mainImageFileName);
             mainPhotoPath = capturedImage.getAbsolutePath();
@@ -347,7 +347,7 @@ public class captureBonus extends AppCompatActivity {
         sendEmailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         sendEmailIntent.setType("text/plain");
         sendEmailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{submissionEmailAddress});
-        sendEmailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "2020_" + riderNumToH + "_" + bonusCategory.getText() +"_" + bonusState.getText() + "_" + bonusCity.getText() + "_" + bonusCode.getText());
+        sendEmailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "2021_" + riderNumToH + "_" + bonusCategory.getText() +"_" + bonusState.getText() + "_" + bonusCity.getText() + "_" + bonusCode.getText());
         sendEmailIntent.putExtra(Intent.EXTRA_TEXT, "Sent via TOH App for Android");
         if (mainPhotoPath != null) {
             sendEmailIntent.putExtra(android.content.Intent.EXTRA_STREAM, FileProvider.getUriForFile(captureBonus.this, "net.tommyc.android.tourofhonor", mainPhotoUri));
@@ -369,7 +369,7 @@ public class captureBonus extends AppCompatActivity {
         emailIntent.setType("text/plain");
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,
                 new String[]{submissionEmailAddress});
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "2020_" + riderNumToH + "_" + bonusCategory.getText() +"_" + bonusState.getText() + "_" + bonusCity.getText() + "_" + bonusCode.getText());
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "2021_" + riderNumToH + "_" + bonusCategory.getText() +"_" + bonusState.getText() + "_" + bonusCity.getText() + "_" + bonusCode.getText());
         emailIntent.putExtra(Intent.EXTRA_TEXT, "Sent via TOH App for Android");
 
         // Get the attachments
