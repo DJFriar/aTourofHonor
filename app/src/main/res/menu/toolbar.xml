@@ -16,6 +16,10 @@
                 android:title="@string/btnLblFilterTOH"
                 app:showAsAction="never" />
 
+            <item android:id="@+id/action_filter_911"
+                android:title="@string/btnLblFilter911"
+                app:showAsAction="never" />
+
             <item android:id="@+id/action_filter_DB"
                 android:title="@string/btnLblFilterDB"
                 app:showAsAction="never" />

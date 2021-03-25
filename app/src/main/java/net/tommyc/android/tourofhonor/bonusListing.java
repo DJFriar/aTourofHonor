@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +22,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import static net.tommyc.android.tourofhonor.splashScreen.targetMemorialType;
 import static net.tommyc.android.tourofhonor.splashScreen.targetState;
 import static net.tommyc.android.tourofhonor.splashScreen.tohPreferences;
 
@@ -35,6 +37,7 @@ public class bonusListing extends AppCompatActivity {
     AppDataDBHelper appDBHelper;
 
     private String chosenState = "";
+    private String chosenCategory = "";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,14 +68,17 @@ public class bonusListing extends AppCompatActivity {
             Log.e(TAG,"targetState Failed");
         }
 
+        if (sharedpreferences.contains(targetMemorialType)) {
+            chosenCategory = sharedpreferences.getString(targetMemorialType,"");
+            Log.e(TAG,"targetCategory set to " + chosenCategory);
+        } else {
+            Log.e(TAG,"targetCategory Failed");
+        }
+
         // Print to Log the DB headers
         CommonSQLiteUtilities.logDatabaseInfo(appDBHelper.getWritableDatabase());
 
-        // Populate the ListView w/ all rows
-        Cursor data = appDBHelper.getAppDataAllBonuses();
-        listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+        processRequest();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -92,6 +98,8 @@ public class bonusListing extends AppCompatActivity {
         ListView listView;
         Cursor data;
 
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
         switch (item.getItemId()) {
             case R.id.action_settings:
                 Log.e(TAG,"action_setting");
@@ -107,82 +115,83 @@ public class bonusListing extends AppCompatActivity {
 
             case R.id.action_filter_TOH:
                 Log.e(TAG,"action_filter_TOH");
-                // Populate the ListView w/ filtered data
-                listView = findViewById(R.id.lvBonusData);
-                data = appDBHelper.getAppDataTOHBonuses();
-                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                chosenCategory = "Tour of Honor";
+                editor.putString(targetMemorialType, chosenCategory);
+                editor.apply();
+
+                processRequest();
+                return true;
+
+            case R.id.action_filter_911:
+                Log.e(TAG,"action_filter_911");
+                chosenCategory = "911";
+                editor.putString(targetMemorialType, chosenCategory);
+                editor.apply();
+
+                processRequest();
                 return true;
 
             case R.id.action_filter_HUEY:
                 Log.e(TAG,"action_filter_HUEY");
-                // Populate the ListView w/ filtered data
-                listView = findViewById(R.id.lvBonusData);
-                data = appDBHelper.getAppDataHueyBonuses();
-                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                chosenCategory = "Hueys";
+                editor.putString(targetMemorialType, chosenCategory);
+                editor.apply();
+
+                processRequest();
                 return true;
 
             case R.id.action_filter_DB:
                 Log.e(TAG,"action_filter_DB");
-                // Populate the ListView w/ filtered data
-                listView = findViewById(R.id.lvBonusData);
-                data = appDBHelper.getAppDataDBBonuses();
-                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                chosenCategory = "Doughboys";
+                editor.putString(targetMemorialType, chosenCategory);
+                editor.apply();
+
+                processRequest();
                 return true;
 
             case R.id.action_filter_GS:
                 Log.e(TAG,"action_filter_GS");
-                // Populate the ListView w/ filtered data
-                listView = findViewById(R.id.lvBonusData);
-                data = appDBHelper.getAppDataGSBonuses();
-                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                chosenCategory = "Gold Star Family";
+                editor.putString(targetMemorialType, chosenCategory);
+                editor.apply();
+
+                processRequest();
                 return true;
 
             case R.id.action_filter_NP:
                 Log.e(TAG,"action_filter_NP");
-                // Populate the ListView w/ filtered data
-                listView = findViewById(R.id.lvBonusData);
-                data = appDBHelper.getAppDataNPBonuses();
-                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                chosenCategory = "National Parks";
+                editor.putString(targetMemorialType, chosenCategory);
+                editor.apply();
+
+                processRequest();
                 return true;
 
             case R.id.action_filter_K9:
                 Log.e(TAG,"action_filter_K9");
-                // Populate the ListView w/ filtered data
-                listView = findViewById(R.id.lvBonusData);
-                data = appDBHelper.getAppDataK9Bonuses();
-                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                chosenCategory = "War Dogs";
+                editor.putString(targetMemorialType, chosenCategory);
+                editor.apply();
+
+                processRequest();
                 return true;
 
             case R.id.action_filter_none:
                 Log.e(TAG,"action_filter_none");
-                // Populate the ListView w/ filtered data
-                listView = findViewById(R.id.lvBonusData);
-                data = appDBHelper.getAppDataAllBonuses();
-                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                chosenCategory = "";
+                editor.putString(targetMemorialType, chosenCategory);
+                editor.apply();
+
+                processRequest();
                 return true;
 
             case R.id.action_filter_MTr:
                 Log.e(TAG,"action_filter_MTr");
-                // Populate the ListView w/ filtered data
-                listView = findViewById(R.id.lvBonusData);
-                data = appDBHelper.getAppDataMTrBonuses();
-                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
+                chosenCategory = "Madonna of the Trail";
+                editor.putString(targetMemorialType, chosenCategory);
+                editor.apply();
+
+                processRequest();
                 return true;
 
 
@@ -190,14 +199,8 @@ public class bonusListing extends AppCompatActivity {
             case R.id.action_FilterState:
                 Log.e(TAG,"entering action_filter_State");
                 promptForState(this);
-                //chosenState = "OH";
+
                 Log.e(TAG,"action_filter_State, returned from prompt");
-                // Populate the ListView w/ filtered data
-                listView = findViewById(R.id.lvBonusData);
-                data = appDBHelper.getAppDataByState(chosenState);
-                listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
-                        new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
-                        new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
                 return true;
 
 
@@ -256,6 +259,48 @@ public class bonusListing extends AppCompatActivity {
     public void promptForState(bonusListing view) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose state");
+
+        // Set up the input
+        final EditText input = new EditText(this);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        if (!TextUtils.isEmpty(chosenState))
+        {
+            input.setText(chosenState);
+        }
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton("GO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Log.e(TAG,"chosenState was: " + chosenState);
+                chosenState = input.getText().toString().toUpperCase();
+                //Log.e(TAG,"chosenState is now: " + chosenState);
+                //filterStateWithValue(chosenState);
+
+                // Store the chosen state in the TOH preferences
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(targetState, chosenState);
+                editor.apply();
+
+                processRequest();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    public void promptForStatePrev(bonusListing view) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Enter Two Letter State Code");
 
         // Set up the input
@@ -283,5 +328,15 @@ public class bonusListing extends AppCompatActivity {
         });
 
         builder.show();
+    }
+
+    public void processRequest() {
+        // Populate the ListView w/ filtered data
+        ListView listView = findViewById(R.id.lvBonusData);
+        //data = appDBHelper.getAppDataTOHBonuses(chosenState);
+        Cursor data = appDBHelper.getAppDataBonuses(chosenState, chosenCategory);
+        listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
+                new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
+                new int[] {R.id.bonusListCode, R.id.bonusListName, R.id.bonusListCategory, R.id.bonusListCity, R.id.bonusListState}, 0));
     }
 }

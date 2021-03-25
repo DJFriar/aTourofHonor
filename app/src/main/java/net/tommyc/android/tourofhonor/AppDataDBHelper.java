@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.File;
@@ -97,17 +98,65 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
     }
 
     //Open the database, so we can query it
-    public boolean openDataBase() throws SQLException
-    {
+    public boolean openDataBase() throws SQLException {
         String mPath = DB_NAME;
-        //Log.v("mPath", mPath);
         mDataBase = SQLiteDatabase.openDatabase(mPath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
         return mDataBase != null;
     }
 
-    Cursor getAppDataTOHBonuses() {
+    Cursor getAppDataBonuses(String state, String bonusType) {
+        Log.e(TAG,"Entered getAppDataBonuses");
+        Log.e(TAG, "Fetching " + state + " and " + bonusType);
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Tour of Honor' ORDER BY sState,sCode", null);
+        Cursor data;
+
+        // Scenarios
+        // 1. no state and no type (default)
+        // 2. state and no type
+        // 3. no state and type
+        // 4. state and type
+
+        String select = "SELECT hMy as _id,* FROM " + DB_TABLE;
+        String orderBy = "ORDER BY sState,sCity,sCode";
+        String where = " ";
+        String [] args = null;
+
+        // Scenario 4
+        if (!TextUtils.isEmpty(bonusType) && !TextUtils.isEmpty(state)) {
+            Log.e(TAG,"Scenario 4");
+            where = "WHERE sCategory = ? AND sState = ?";
+            args = new String[] { bonusType, state };
+        } else {
+            // Scenario 3
+            if (!TextUtils.isEmpty(bonusType) && TextUtils.isEmpty(state)) {
+                Log.e(TAG,"Scenario 3");
+                where = "WHERE sCategory = ?";
+                args = new String[] { bonusType };
+            } else {
+                // Scenario 2
+                if (TextUtils.isEmpty(bonusType) && !TextUtils.isEmpty(state)) {
+                    Log.e(TAG,"Scenario 2");
+                    where = "WHERE sState =?";
+                    args = new String[] { bonusType };
+                }
+            }
+        }
+        Log.e(TAG,"Execute query");
+        data = db.rawQuery(select + " " + where + " " + orderBy, args);
+
+        return data;
+    }
+
+    Cursor getAppDataTOHBonuses(String state) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String where = "sCategory = 'Tour of Honor'";
+        if (!TextUtils.isEmpty(state)) {
+            where += " AND sState = '";
+            where += state;
+            where += "'";
+        }
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE " + where + " ORDER BY sState, sCode", null);
+//        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Tour of Honor' ORDER BY sState,sCode", null);
         return data;
     }
 
@@ -144,6 +193,12 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
     Cursor getAppDataMTrBonuses() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = 'Madonna of the Trail' ORDER BY sState,sCode", null);
+        return data;
+    }
+
+    Cursor getAppData911Bonuses() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT hMy as _id,* FROM " + DB_TABLE + " WHERE sCategory = '911' ORDER BY sState,sCode", null);
         return data;
     }
 

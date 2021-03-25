@@ -7,14 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import androidx.core.app.NotificationCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -27,6 +27,7 @@ public class splashScreen extends AppCompatActivity {
     public static final String riderNum = "RiderNumber";
     public static final String pillionNum = "PillionNumber";
     public static final String targetState = "TargetState";
+    public static final String targetMemorialType = "TargetMemorialType";
     public static final String devModeStatus = "DevModeStatus";
 
     public static String riderNumToH;

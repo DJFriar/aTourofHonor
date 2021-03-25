@@ -25,6 +25,7 @@
     <string name="btnLblFilter">Filter</string>
     <string name="btnLblFilterTOH" translatable="false">Tour of Honor</string>
     <string name="btnLblFilterHUEY" translatable="false">Huey</string>
+    <string name="btnLblFilter911" translatable="false">9/11</string>
     <string name="btnLblFilterDB" translatable="false">Doughboys</string>
     <string name="btnLblFilterAll" translatable="false">All</string>
     <string name="btnLblFilterNP" translatable="false">National Parks</string>
