@@ -33,8 +33,8 @@ android {
     defaultConfig {
         applicationId "net.tommyc.android.tourofhonor2"
         minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 24
+        targetSdkVersion 29
+        versionCode 28
         versionName "21.3." + versionBuild
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
