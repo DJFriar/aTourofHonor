@@ -136,8 +136,8 @@ public class AppDataDBHelper extends SQLiteOpenHelper {
                 // Scenario 2
                 if (TextUtils.isEmpty(bonusType) && !TextUtils.isEmpty(state)) {
                     Log.e(TAG,"Scenario 2");
-                    where = "WHERE sState =?";
-                    args = new String[] { bonusType };
+                    where = "WHERE sState = ?";
+                    args = new String[] { state };
                 }
             }
         }
