@@ -124,7 +124,7 @@ public class bonusListing extends AppCompatActivity {
 
             case R.id.action_filter_911:
                 Log.e(TAG,"action_filter_911");
-                chosenCategory = "911";
+                chosenCategory = "9/11";
                 editor.putString(targetMemorialType, chosenCategory);
                 editor.apply();
 
