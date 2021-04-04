@@ -13,14 +13,14 @@
     <string name="valueTrophiesNeeded" translatable="false">(7 Memorials)</string>
     <string name="lblAdditionalDetails">Additional Bonus Details</string>
     <string name="lblSampleBonusImage" translatable="false">Sample Bonus Image</string>
-    <string name="lblMyBonusImages" translatable="false">My Bonus Images</string>
-    <string name="btnLblSubmitBonus">Submit Bonus</string>
+    <string name="lblMyBonusImages" translatable="false">My Memorial Images</string>
+    <string name="btnLblSubmitBonus">Submit Memorial</string>
     <string name="btnLblSendFeedback">Send App Feedback</string>
     <string name="btnLblSaveRiderInfo">Save Rider Details</string>
     <string name="btnLblSettings">Settings</string>
     <string name="lblTrophyModeTitle" translatable="false">Trophy Mode</string>
     <string name="btnLblTrophyMode" translatable="false">Trophy Mode</string>
-    <string name="lblTrophyModeDesc" translatable="false">Trophy Mode will hold all captured images until all have been collected. Once the final required bonus has been captured, the submit button will be enabled.</string>
+    <string name="lblTrophyModeDesc" translatable="false">Trophy Mode will hold all captured images until all have been collected. Once the final required park has been captured, the submit button will be enabled.</string>
     <string name="btnStartTrophyRun" translatable="false">Start Trophy Run</string>
     <string name="btnLblFilter">Filter</string>
     <string name="btnLblFilterTOH" translatable="false">Tour of Honor</string>
@@ -35,7 +35,7 @@
     <string name="btnLblFilterState" translatable="false">Target State</string>
     <string name="appFeedbackEmailSubjectPrefix" translatable="false">TOH Feedback from Rider </string>
     <string name="lblRiderNumber">Rider Number</string>
-    <string name="lblPillionNumber">Pillion Number</string>
+    <string name="lblPillionNumber">Passenger Number</string>
     <string name="mainImageDescription" translatable="false">Main Image</string>
     <string name="secondaryImageDescription" translatable="false">Secondary Image</string>
     <string name="sampleImageDescription" translatable="false">Sample Image</string>
@@ -50,6 +50,6 @@
     <string name="imageDescriptionSettingsIcon" translatable="false">Settings Icon </string>
     <string name="versionPrefix">Version </string>
     <string name="createdBy" translatable="false">Created by Tommy Craft &amp; Keisha Perry </string>
-    <string name="gps" translatable="false">GPS: </string>
-    <string name="placeholderCoordinates" translatable="false">XX.YYYYYY, -XX.YYYYYY</string>
+    <string name="gps" translatable="false">GPS:\u0020</string>
+    <string name="placeholderCoordinates" translatable="false">XX.YYYYYY,\u0020-XX.YYYYYY</string>
 </resources>
