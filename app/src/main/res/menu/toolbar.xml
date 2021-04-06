@@ -24,25 +24,26 @@
                 android:title="@string/btnLblFilterDB"
                 app:showAsAction="never" />
 
+            <item android:id="@+id/action_filter_GS"
+                android:title="@string/btnLblFilterGS"
+                app:showAsAction="always" />
+
             <item android:id="@+id/action_filter_HUEY"
                 android:title="@string/btnLblFilterHUEY"
                 app:showAsAction="never" />
 
-            <item android:id="@+id/action_filter_NP"
-                android:title="@string/btnLblFilterNP"
-                app:showAsAction="never" />
+            <item android:id="@+id/action_filter_MTr"
+                android:title="@string/btnLblFilterMTr"
+                app:showAsAction="always" />
+
+<!--            <item android:id="@+id/action_filter_NP"-->
+<!--                android:title="@string/btnLblFilterNP"-->
+<!--                app:showAsAction="never" />-->
 
             <item android:id="@+id/action_filter_K9"
                 android:title="@string/btnLblFilterK9"
                 app:showAsAction="never" />
 
-            <item android:id="@+id/action_filter_GS"
-                android:title="@string/btnLblFilterGS"
-                app:showAsAction="always" />
-
-            <item android:id="@+id/action_filter_MTr"
-                android:title="@string/btnLblFilterMTr"
-                app:showAsAction="always" />
         </menu>
     </item>
 
@@ -50,22 +51,10 @@
         android:icon="@drawable/ic_filterstate_alt_light"
         android:title="@string/btnLblSettings"
         app:showAsAction="always" >
-
-<!--        <menu>-->
-<!--            <item android:id="@+id/action_filter_AL"-->
-<!--                android:title="Alabama"-->
-<!--                app:showAsAction="always" />-->
-<!--            <item android:id="@+id/action_filter_AK"-->
-<!--                android:title="Alaska"-->
-<!--                app:showAsAction="always" />-->
-<!--        </menu>-->
     </item>
 
     <item android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings_white_24dp"
         android:title="@string/btnLblSettings"
         app:showAsAction="ifRoom" />
-
-
-
 </menu>

@@ -158,14 +158,14 @@ public class bonusListing extends AppCompatActivity {
                 processRequest();
                 return true;
 
-            case R.id.action_filter_NP:
-                Log.e(TAG,"action_filter_NP");
-                chosenCategory = "National Parks";
-                editor.putString(targetMemorialType, chosenCategory);
-                editor.apply();
-
-                processRequest();
-                return true;
+//            case R.id.action_filter_NP:
+//                Log.e(TAG,"action_filter_NP");
+//                chosenCategory = "National Parks";
+//                editor.putString(targetMemorialType, chosenCategory);
+//                editor.apply();
+//
+//                processRequest();
+//                return true;
 
             case R.id.action_filter_K9:
                 Log.e(TAG,"action_filter_K9");
@@ -333,7 +333,6 @@ public class bonusListing extends AppCompatActivity {
     public void processRequest() {
         // Populate the ListView w/ filtered data
         ListView listView = findViewById(R.id.lvBonusData);
-        //data = appDBHelper.getAppDataTOHBonuses(chosenState);
         Cursor data = appDBHelper.getAppDataBonuses(chosenState, chosenCategory);
         listView.setAdapter(new SimpleCursorAdapter(this, R.layout.bonus_list_row_item, data,
                 new String[] {"sCode", "sName", "sCategory", "sCity", "sState"},
